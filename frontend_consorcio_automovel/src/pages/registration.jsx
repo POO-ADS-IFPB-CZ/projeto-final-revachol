@@ -3,10 +3,11 @@ import { Header } from "../components/header";
 import { Link } from "react-router-dom";
 import { Main } from "../components/main";
 import { Input } from "../components/input";
+import { Layout } from "../components/layout";
 
 export function Registration() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <Layout>
       <Header />
       <Main className="flex justify-center items-center">
 
@@ -30,6 +31,6 @@ export function Registration() {
       </Main>
       <Footer />
 
-    </div>
+    </Layout>
   );
 }

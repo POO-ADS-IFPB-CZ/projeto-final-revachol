@@ -1,10 +1,12 @@
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
+import { Layout } from "../components/layout";
+
 export function Vehicles() {
   const array = [1, 2, 3, 4, 5, 6, 7, 8]
   return (
-    <div className="min-h-screen flex flex-col">
+    <Layout>
       <Header />
       <Main>
         <div className="p-4 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-xl mx-auto">
@@ -17,6 +19,6 @@ export function Vehicles() {
         </div>
       </Main>
       <Footer />
-    </div>
+    </Layout>
   );
 }
