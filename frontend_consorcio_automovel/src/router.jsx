@@ -3,6 +3,7 @@ import { Vehicles } from "./pages/vehicles";
 import { Login } from "./pages/login";
 import { Registration } from "./pages/registration";
 import { Home } from "./pages/home";
+import { Sales } from "./pages/sales";
 export function Router() {
   return (
     <BrowserRouter>
@@ -12,7 +13,7 @@ export function Router() {
         <Route path="/cadastro" element={<Registration/>} />
         
         <Route path="/veiculos" element={<Vehicles/>} />
-        <Route path="/vendas" element={<div>oi</div>} />
+        <Route path="/vendas" element={<Sales />} />
         <Route path="*" element={<div>erro</div>} />
       </Routes>
     </BrowserRouter>
