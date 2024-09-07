@@ -1,5 +1,7 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
+import { ButtonIcon } from './button-icon'
+import { Plus } from 'lucide-react'
 
 export function Modal({children, title}) {
   let [isOpen, setIsOpen] = useState(false)
@@ -14,12 +16,10 @@ export function Modal({children, title}) {
 
   return (
     <>
-      <Button
-        onClick={open}
-        className="rounded-md bg-black/20 py-2 px-4 text-sm font-medium text-white focus:outline-none data-[hover]:bg-black/30 data-[focus]:outline-1 data-[focus]:outline-white"
-      >
+      <ButtonIcon onClick={open}>
+        <Plus size={16}/>
         Novo
-      </Button>
+      </ButtonIcon>
 
       <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close} __demoMode>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">

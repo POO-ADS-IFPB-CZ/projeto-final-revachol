@@ -2,6 +2,8 @@ import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import { Input } from './input'
 import photoCart from "../assets/imgs/car.jpg"
+import {ButtonIcon} from './button-icon'
+import { Save, Trash } from 'lucide-react'
 
 function VehicleCard() {
   let [isOpen, setIsOpen] = useState(false)
@@ -50,8 +52,14 @@ function VehicleCard() {
               </div>
 
               <div className='flex justify-between'>
-                <button>Salvar</button>
-                <button>Excluir</button>
+                <ButtonIcon>
+                  <Save size={16}/>
+                  Salvar
+                </ButtonIcon>
+                <ButtonIcon style="danger">
+                  <Trash size={16}/>
+                  Excluir
+                </ButtonIcon>
               </div>
 
             </DialogPanel>
