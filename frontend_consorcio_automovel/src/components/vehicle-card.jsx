@@ -15,7 +15,7 @@ function VehicleCard() {
   }
   return (
     <>
-      <div onClick={open} className="w-full relative cursor-pointer">
+      <div onClick={open} className="w-full relative cursor-pointer vehicle-card">
         <img
           className="w-full"
           src={photoCart}
