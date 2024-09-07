@@ -18,7 +18,7 @@ export function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="hidden w-full relative sm:flex sm:static">
+      className="hidden w-full relative sm:flex sm:static z-10">
       <div
         className="absolute bg-slate-200 -top-4 w-full flex flex-col p-4 gap-4 sm:static sm:flex-row sm:justify-center">
         {links.map(link => (
