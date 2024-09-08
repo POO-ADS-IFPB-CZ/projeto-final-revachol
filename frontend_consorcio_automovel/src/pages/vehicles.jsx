@@ -12,7 +12,7 @@ export function Vehicles() {
     <Layout>
       <Header />
       <Main>
-        <section>
+        <section className="space-y-4">
           <div className="flex justify-between items-center ">
             <h1 className="text-lg font-semibold text-primary">Veiculos</h1>
             <Modal title="Adicionar veículo">
