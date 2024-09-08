@@ -8,8 +8,8 @@ import { twMerge } from "tailwind-merge";
 export function Toggle() {
   const { handleToggleNavbar, isVisible } = useContext(ToggleContext);
   
-  const backgroundColor = isVisible? "bg-red-400": "bg-primary"
-  const className = twMerge("block rounded-sm p-1 sm:hidden", backgroundColor )
+  const backgroundColor = isVisible? "bg-slate-300": ""
+  const className = twMerge("block rounded-sm p-1 sm:hidden text-primary", backgroundColor )
   return (
     <button 
     className={className}

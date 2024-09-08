@@ -13,10 +13,10 @@ export function Header() {
       <header className="bg-slate-200">
         <div className="flex flex-col p-4 gap-4 sm:flex-row sm:justify-between">
           <div className="flex justify-between items-center">
-            <h1 className="text-xl">Nome do site</h1>
+            <h1 className="text-2xl text-primary font-medium">Nome do site</h1>
             <Toggle />
           </div>
-          {inputIsVisible && <InputHeader />}
+          {inputIsVisible && <InputHeader placeholder={location.pathname}/>}
         </div>
         <Navbar />
       </header>
