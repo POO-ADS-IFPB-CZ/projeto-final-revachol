@@ -13,6 +13,11 @@ export function Sales() {
     { id: 2 },
     { id: 3 }
   ]
+
+  //função que salva a venda
+  function handleSaveSale() {
+    alert("Salvando")
+  }
   return (
     <Layout>
       <Header />
@@ -20,7 +25,7 @@ export function Sales() {
         <section className="space-y-4">
         <div className="flex justify-between items-center">
             <h1 className="text-lg font-semibold text-primary">Vendas</h1>
-            <Modal title="Realizar venda">
+            <Modal title="Realizar venda" saveOnClick={handleSaveSale}>
               <Input type="text" placeholder="CPF do cliente" />
               <Input type="text" placeholder="CPF do vendedor" />
               <Input type="date" />

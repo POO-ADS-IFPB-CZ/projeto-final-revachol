@@ -1,8 +1,8 @@
-import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { Input } from './input';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ButtonIcon } from './button-icon';
-import { Check, Save, Trash } from "lucide-react";
+import { Check, Trash } from "lucide-react";
 import { useState } from "react";
+import { TextLocked } from './text-locked';
 
 export function SaleCard() {
   let [isOpen, setIsOpen] = useState(false)
@@ -14,6 +14,7 @@ export function SaleCard() {
   function close() {
     setIsOpen(false)
   }
+
   return (
     <>
       <div onClick={open} className="bg-secondary p-4 flex gap-4">
@@ -39,30 +40,35 @@ export function SaleCard() {
               <DialogTitle as="h3" className="text-lg font-semibold text-primary">
                 Fixa técnica
               </DialogTitle>
-              <div className='flex flex-col gap-2'>
-                <Input type="text"  value="Vendedor Islan" disabled={true}/>
-                <Input type="text"  value="Cliente Marcena" disabled={true}/>
-                <Input type="text" value="Fusca" disabled={true}/>
-                <Input type="number" placeholder="Preço" value={1000} disabled={true}/>
-                <div className='flex gap-2'>
-                  <Input type="checkbox" placeholder="Cor" value="Vermelho" id="pago"/>
-                  <label htmlFor="pago">
-                    Pago
-                  </label>
-                </div>
+              <div className='flex flex-col gap-2 max-h-[70vh] overflow-y-auto'>
+
+                <h1 className='font-semibold text-sm mt-2'>Funcionario</h1>
+                <TextLocked>Islan</TextLocked>
+                <TextLocked>marcena.gmail.com</TextLocked>
+                <TextLocked>111.222.333-50</TextLocked>
+                <TextLocked>Cajazeira - PB, numero 123</TextLocked>
+                <TextLocked>83 09779-9779</TextLocked>
+
+                <h1 className='font-semibold text-sm mt-2'>Cliente</h1>
+                <TextLocked>Cliente Marcena</TextLocked>
+                <TextLocked>marcena.gmail.com</TextLocked>
+                <TextLocked>111.222.333-50</TextLocked>
+                <TextLocked>Cajazeira - PB, numero 123</TextLocked>
+                <TextLocked>83 09779-9779</TextLocked>
+
+                <h1 className='font-semibold text-sm mt-2'>Veiculo</h1>
+                <TextLocked >Fusca</TextLocked>
+                <TextLocked >Fusca turbo pro</TextLocked>
+                <TextLocked >19999.00 RS</TextLocked>
+                <TextLocked >Vermelho</TextLocked>
               </div>
 
               <div className='flex justify-between'>
-                <ButtonIcon onClick={close}>
-                  <Save size={16}/>
-                  Salvar
-                </ButtonIcon>
                 <ButtonIcon style="danger" onClick={close}>
-                  <Trash size={16}/>
+                  <Trash size={16} />
                   Excluir
                 </ButtonIcon>
               </div>
-
             </DialogPanel>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ButtonIcon } from './button-icon'
 import { Plus } from 'lucide-react'
 
-export function Modal({children, title}) {
+export function Modal({children, title, saveOnClick}) {
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -37,7 +37,10 @@ export function Modal({children, title}) {
               <div>
                 <Button
                   className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700"
-                  onClick={close}
+                  onClick={()=>{
+                    saveOnClick()
+                    close()
+                  }}
                 >
                   Salvar
                 </Button>

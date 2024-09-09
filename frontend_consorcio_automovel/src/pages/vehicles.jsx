@@ -8,6 +8,10 @@ import VehicleCard from "../components/vehicle-card";
 
 export function Vehicles() {
   const array = [1, 2, 3, 4, 5, 6, 7, 8]
+
+  function handleSaveVehicle() {
+    alert("Salvando")
+  }
   return (
     <Layout>
       <Header />
@@ -15,7 +19,7 @@ export function Vehicles() {
         <section className="space-y-4">
           <div className="flex justify-between items-center ">
             <h1 className="text-lg font-semibold text-primary">Veiculos</h1>
-            <Modal title="Adicionar veículo">
+            <Modal title="Adicionar veículo" saveOnClick={handleSaveVehicle}>
               <Input type="text" placeholder="Chassi" />
               <Input type="text" placeholder="Modelo" />
               <Input type="text" placeholder="Nome" />

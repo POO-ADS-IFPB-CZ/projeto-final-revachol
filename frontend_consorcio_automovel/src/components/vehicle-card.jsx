@@ -52,11 +52,11 @@ function VehicleCard() {
               </div>
 
               <div className='flex justify-between'>
-                <ButtonIcon>
+                <ButtonIcon onClick={close}>
                   <Save size={16}/>
                   Salvar
                 </ButtonIcon>
-                <ButtonIcon style="danger">
+                <ButtonIcon style="danger" onClick={close}>
                   <Trash size={16}/>
                   Excluir
                 </ButtonIcon>

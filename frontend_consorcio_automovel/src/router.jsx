@@ -5,6 +5,7 @@ import { RegistrationClient } from "./pages/registration-client";
 import { RegistrationEmployee } from "./pages/registration-employee";
 import { Home } from "./pages/home";
 import { Sales } from "./pages/sales";
+
 export function Router() {
   return (
     <BrowserRouter>
