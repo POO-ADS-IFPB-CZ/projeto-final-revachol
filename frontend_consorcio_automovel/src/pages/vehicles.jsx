@@ -5,6 +5,7 @@ import { Layout } from "../components/layout";
 import { Modal } from "../components/modal";
 import { Input } from "../components/input";
 import VehicleCard from "../components/vehicle-card";
+import { Upload } from "lucide-react";
 
 export function Vehicles() {
   const array = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -25,13 +26,19 @@ export function Vehicles() {
               <Input type="text" placeholder="Nome" />
               <Input type="number" placeholder="Preço" />
               <Input type="text" placeholder="Cor" />
-              <input type="file" className="bg-primary" />
+              <div className="relative max-w-36 py-1">
+                <input type="file" className="absolute  opacity-0  inset-0 peer" />
+                <div className="flex justify-center items-center gap-1 py-1 rounded text-primary bg-slate-200 peer-hover:bg-slate-300">
+                  <Upload size={16}/>
+                  Upload
+                </div>
+              </div>
             </Modal>
           </div>
-          
+
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-2xl mx-auto">
             {array.map(num => (
-              <VehicleCard key={num}/>
+              <VehicleCard key={num} />
             ))}
           </div>
 
