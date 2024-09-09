@@ -3,6 +3,7 @@ import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Input } from "../components/input";
 import { Layout } from "../components/layout";
+import { ButtonIcon } from "../components/button-icon"
 
 export function RegistrationEmployee() {
   return (
@@ -18,21 +19,21 @@ export function RegistrationEmployee() {
           <Input
             type="email"
             placeholder="email" />
-            <Input
+          <Input
             type="text"
             placeholder="CPF" />
-            <Input
+          <Input
             type="text"
             placeholder="endereço" />
-            <Input
+          <Input
             type="text"
             placeholder="telefone" />
           <Input
             type="password"
             placeholder="senha" />
-          <button
-            className="self-start min-w-28 bg-primary text-secondary border border-primary rounded py-1 px-2 transition duration-300 hover:text-primary hover:bg-transparent"
-            type="submit">Salvar</button>
+          <div>
+            <ButtonIcon type="submit">Salvar</ButtonIcon>
+          </div>
         </form>
 
       </Main>

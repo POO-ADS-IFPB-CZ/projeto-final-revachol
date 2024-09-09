@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Main } from "../components/main";
 import { Input } from "../components/input";
 import { Layout } from "../components/layout";
+import { ButtonIcon } from "../components/button-icon"
 
 export function Login() {
   return (
@@ -19,9 +20,7 @@ export function Login() {
           <Input
             type="password"
             placeholder="senha" />
-          <button
-            className="self-start min-w-28 bg-primary text-secondary border border-primary rounded py-1 px-2 transition duration-300 hover:text-primary hover:bg-transparent"
-            type="submit">Enter</button>
+          <ButtonIcon type="submit">Entrar</ButtonIcon>
           <p>Não possui conta? <Link to="/cadastro" className="text-primary">Cadastre-se</Link></p>
         </form>
 
