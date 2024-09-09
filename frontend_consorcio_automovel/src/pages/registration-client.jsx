@@ -5,29 +5,33 @@ import { Main } from "../components/main";
 import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 
-export function Registration() {
+export function RegistrationClient() {
   return (
     <Layout>
       <Header />
-      <Main className="flex justify-center items-center">
+      <Main className="flex justify-center items-center sm:items-start sm:pt-24">
 
         <form className="flex flex-col gap-2 w-full max-w-screen-sm">
-          <h1 className="text-2xl font-semibold">Cadastro</h1>
+          <h1 className="text-2xl font-semibold">Cadastro de cliente</h1>
           <Input
             type="text"
             placeholder="nome" />
           <Input
             type="email"
             placeholder="email" />
-          <Input
-            type="password"
-            placeholder="senha" />
+            <Input
+            type="text"
+            placeholder="CPF" />
+            <Input
+            type="text"
+            placeholder="endereço" />
+            <Input
+            type="text"
+            placeholder="telefone" />
           <button
             className="self-start min-w-28 bg-primary text-secondary border border-primary rounded py-1 px-2 transition duration-300 hover:text-primary hover:bg-transparent"
-            type="submit">Enter</button>
-          <p>Possui conta? <Link to="/login" className="text-primary">Entre</Link></p>
-        </form>
-
+            type="submit">Salvar</button>
+        </form> 
       </Main>
       <Footer />
 
