@@ -32,7 +32,7 @@ export function Sales() {
               <Input type="text" placeholder="Chassi" />
             </Modal> 
           </div>
-          <div className="flex flex-col gap-4 max-w-4xl mx-auto">
+          <div className="flex flex-col gap-4 max-w-xl mx-auto">
             {vendas.map(venda => (
               <SaleCard key={venda.id} />
             ))}

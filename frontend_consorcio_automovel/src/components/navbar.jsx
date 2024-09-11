@@ -21,7 +21,7 @@ export function Navbar() {
       ref={navbarRef}
       className="hidden w-full relative sm:flex sm:static z-10">
       <div
-        className="absolute bg-slate-200 -top-4 w-full flex flex-col p-4 gap-4 sm:static sm:flex-row sm:justify-center">
+        className="absolute bg-slate-200 top-[1px] w-full flex flex-col p-4 gap-4 sm:static sm:flex-row sm:justify-center">
         {links.map(link => (
           <Anchor 
             key={link.label} 

@@ -1,6 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ButtonIcon } from './button-icon';
-import { Check, Trash } from "lucide-react";
+import { Eye, Trash } from "lucide-react";
 import { useState } from "react";
 import { TextLocked } from './text-locked';
 
@@ -17,16 +17,18 @@ export function SaleCard() {
 
   return (
     <>
-      <div onClick={open} className="bg-secondary p-4 flex gap-4">
+      <div className="bg-secondary p-4 flex gap-4">
         <div className="flex-grow">
           <div className="flex justify-between">
             <p>Cliete</p>
             <p>Vendedor</p>
           </div>
-          <p>Fusca</p>
+          <p className='text-sm'>Fusca</p>
         </div>
-        <div className="bg-green-700 text-white w-12 h-12 rounded-full flex justify-center items-center">
-          <Check />
+        <div 
+          onClick={open} 
+          className="bg-primary text-white w-12 h-12 rounded-full cursor-pointer flex justify-center items-center hover:text-white hover:bg-indigo-400">
+          <Eye />
         </div>
       </div>
 

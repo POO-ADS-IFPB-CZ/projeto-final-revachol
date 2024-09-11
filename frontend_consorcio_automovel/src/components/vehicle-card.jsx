@@ -48,7 +48,6 @@ function VehicleCard() {
                 <Input type="text" placeholder="Nome" value="Fusca"/>
                 <Input type="number" placeholder="Preço" value={1000}/>
                 <Input type="text" placeholder="Cor" value="Vermelho"/>
-                <input type="file" className="bg-primary" />
               </div>
 
               <div className='flex justify-between'>
