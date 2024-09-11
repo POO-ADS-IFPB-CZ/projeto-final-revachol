@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+.title { 
+  text-shadow: 2px 2px 3px black;
+}
+
+.subtitle { 
+  text-shadow: 1px 1px 1px black;
+}
+
 .background-home {
   background-image: url(./assets/imgs/carro1.jpeg);
   background-position: center;
