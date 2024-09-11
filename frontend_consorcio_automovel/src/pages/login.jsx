@@ -20,7 +20,9 @@ export function Login() {
           <Input
             type="password"
             placeholder="senha" />
-          <ButtonIcon type="submit">Entrar</ButtonIcon>
+          <div>
+            <ButtonIcon type="submit">Entrar</ButtonIcon>
+          </div>
           <p>Não possui conta? <Link to="/cadastro" className="text-primary">Cadastre-se</Link></p>
         </form>
 
