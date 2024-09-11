@@ -5,6 +5,7 @@ import { RegistrationClient } from "./pages/registration-client";
 import { RegistrationEmployee } from "./pages/registration-employee";
 import { Home } from "./pages/home";
 import { Sales } from "./pages/sales";
+import { NotFound } from "./pages/not-found";
 
 export function Router() {
   return (
@@ -17,7 +18,7 @@ export function Router() {
         
         <Route path="/veiculos" element={<Vehicles/>} />
         <Route path="/vendas" element={<Sales />} />
-        <Route path="*" element={<div>erro</div>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   );
