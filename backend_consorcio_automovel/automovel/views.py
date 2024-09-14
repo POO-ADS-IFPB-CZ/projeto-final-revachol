@@ -2,7 +2,7 @@ from automovel.schemas import AutomovelSchema, AutomovelUpdateSchema
 from .controllers import AutomovelController
 from ninja import NinjaAPI, File
 from ninja.files import UploadedFile
-from django.http import JsonResponse, HttpRequest
+from django.http import JsonResponse
 
 class AutomovelView:
     def __init__(self):
@@ -16,7 +16,6 @@ class AutomovelView:
                 automoveis = AutomovelController.listar_automoveis()
                 if automoveis is None:
                     return JsonResponse({"status": 404, "message": "Nenhum automóvel cadastrado"}, status=404)
-                
                 return JsonResponse({"automoveis": automoveis})
             else:    
                 return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)
@@ -42,7 +41,7 @@ class AutomovelView:
                 return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)
         
         @self.api.put("/atualizar/{chassi}")
-        def atualizar_automovel(request: HttpRequest, chassi: str, data: AutomovelUpdateSchema):
+        def atualizar_automovel(request, chassi: str, data: AutomovelUpdateSchema):
             if request.user.is_authenticated:
                 automovel = AutomovelController.atualizar_automovel(chassi, data)
                 if automovel:
@@ -52,7 +51,7 @@ class AutomovelView:
                 return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)
         
         @self.api.delete("/deletar/{chassi}")
-        def deletar_automovel(request: HttpRequest, chassi: str):
+        def deletar_automovel(request, chassi: str):
             if request.user.is_authenticated:
                 verificar_automovel = AutomovelController.buscar_automovel(chassi)
                 if verificar_automovel:
