@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 class VendedorController:
     @staticmethod
     def criar_vendedor(data):
+        if User.objects.filter(username=data.username).exists():
+            return None
         vendedor = User.objects.create_user (
             username=data.username,
             password=data.password,
@@ -11,7 +13,6 @@ class VendedorController:
             first_name=data.first_name,
             last_name=data.last_name,
         )
-        vendedor.save()
         return vendedor
     
     @staticmethod

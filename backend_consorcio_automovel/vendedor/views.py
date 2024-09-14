@@ -16,7 +16,11 @@ class VendedorView:
             if not request.user.is_staff:
                 raise HttpError(403, "Entre como administrador para cadastrar um vendedor")
             
-            VendedorController.criar_vendedor(data)
+            vendedor = VendedorController.criar_vendedor(data)
+            
+            if vendedor is None:
+                raise HttpError(400, "Vendedor já cadastrado")
+            
             return {"sucess": "Vendedor cadastrado com sucesso"}
     
         @self.api.post("/login")
