@@ -1,5 +1,4 @@
 from .models import Automovel
-from django.forms.models import model_to_dict
 
 class AutomovelController:
     
@@ -29,6 +28,17 @@ class AutomovelController:
     def buscar_automovel(nome):
         try:
             automovel = Automovel.objects.filter(nome=nome)
+            if automovel:
+                return list(automovel.values())
+            else:
+                return None
+        except Automovel.DoesNotExist:
+            return None
+    
+    @staticmethod
+    def buscar_automovel_por_chassi(chassi):
+        try:
+            automovel = Automovel.objects.filter(chassi=chassi)
             if automovel:
                 return list(automovel.values())
             else:

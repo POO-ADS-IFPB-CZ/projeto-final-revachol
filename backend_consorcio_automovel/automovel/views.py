@@ -53,8 +53,8 @@ class AutomovelView:
         @self.api.delete("/deletar/{chassi}")
         def deletar_automovel(request, chassi: str):
             if request.user.is_authenticated:
-                verificar_automovel = AutomovelController.buscar_automovel(chassi)
-                if verificar_automovel:
+                verificar_automovel = AutomovelController.buscar_automovel_por_chassi(chassi)
+                if verificar_automovel is not None:
                     AutomovelController.deletar_automovel(chassi)
                     return JsonResponse({"success": "Automóvel deletado com sucesso"})
                 else:

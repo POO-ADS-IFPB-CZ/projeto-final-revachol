@@ -1,4 +1,4 @@
-from django.http import HttpRequest
+from django.http import JsonResponse
 from ninja import NinjaAPI
 from .controllers import VendedorController
 from .schemas import VendedorSchema, LoginSchema
@@ -11,32 +11,32 @@ class VendedorView:
     def register_routes(self):
 
         @self.api.post("/cadastrar")
-        def cadastrar_vendedor(request: HttpRequest, data: VendedorSchema):
+        def cadastrar_vendedor(request, data: VendedorSchema):
             if not request.user.is_staff:
-                return {"status": 401, "message": "Autenticação necessária"}
+                return JsonResponse({"status": 401, "message": "Autenticação necessária como administrador"}, status=401)
             
             vendedor = VendedorController.criar_vendedor(data)
             
             if vendedor is None:
-                return {"status": 400, "message": "Vendedor já cadastrado"}
+                return JsonResponse({"status": 400, "message": "Vendedor já cadastrado"}, status=400)
             
-            return {"sucess": "Vendedor cadastrado com sucesso"}
+            return JsonResponse({"success": "Vendedor cadastrado com sucesso"}, status=201)
     
         @self.api.post("/login")
-        def login_vendedor(request: HttpRequest, data: LoginSchema):
+        def login_vendedor(request, data: LoginSchema):
             user = VendedorController.login_vendedor(request, data)
             if user is not None:
-                return {"success": "User autenticado"}
+                return JsonResponse({"success": "User autenticado"}, status=200)
             else:
-                return {"status": 401, "message": "User não autenticado"}
+                return JsonResponse({"status": 401, "message": "Senha ou User incorretos"}, status=401)
             
         @self.api.post("/logout")
-        def logout_vendedor(request: HttpRequest):
+        def logout_vendedor(request):
             if not request.user.is_authenticated:
-                return {"status": 401, "message": "Autenticação necessária"}
+                return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)
             else:
                 VendedorController.logout_vendedor(request)
-                return {"message": "Logout realizado com sucesso"}
+                return JsonResponse({"message": "Logout realizado com sucesso"}, status=200)
         
 vendedor_view = VendedorView()
 api = vendedor_view.api

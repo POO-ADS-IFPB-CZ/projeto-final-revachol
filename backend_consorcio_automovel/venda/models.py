@@ -9,6 +9,7 @@ class Venda(models.Model):
     cpf_cliente = models.ForeignKey(Cliente, to_field='cpf', on_delete=models.DO_NOTHING)
     chassi_automovel = models.ForeignKey(Automovel, to_field='chassi', on_delete=models.DO_NOTHING)
     data_venda = models.DateTimeField(auto_now_add=True)
+    preco = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     
     def __str__(self):
         return f"Venda {self.codigo_venda}: {self.chassi_automovel} vendido por {self.username_vendedor} para {self.cpf_cliente}"
