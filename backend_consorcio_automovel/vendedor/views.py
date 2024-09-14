@@ -1,6 +1,5 @@
 from django.http import HttpRequest
 from ninja import NinjaAPI
-from ninja.errors import HttpError
 from .controllers import VendedorController
 from .schemas import VendedorSchema, LoginSchema
 
@@ -14,12 +13,12 @@ class VendedorView:
         @self.api.post("/cadastrar")
         def cadastrar_vendedor(request: HttpRequest, data: VendedorSchema):
             if not request.user.is_staff:
-                raise HttpError(403, "Entre como administrador para cadastrar um vendedor")
+                return {"status": 401, "message": "Autenticação necessária"}
             
             vendedor = VendedorController.criar_vendedor(data)
             
             if vendedor is None:
-                raise HttpError(400, "Vendedor já cadastrado")
+                return {"status": 400, "message": "Vendedor já cadastrado"}
             
             return {"sucess": "Vendedor cadastrado com sucesso"}
     
@@ -29,12 +28,12 @@ class VendedorView:
             if user is not None:
                 return {"success": "User autenticado"}
             else:
-                raise HttpError(401, "Unauthorized")
+                return {"status": 401, "message": "User não autenticado"}
             
         @self.api.post("/logout")
         def logout_vendedor(request: HttpRequest):
             if not request.user.is_authenticated:
-                raise HttpError(401, "User não autenticado")
+                return {"status": 401, "message": "Autenticação necessária"}
             else:
                 VendedorController.logout_vendedor(request)
                 return {"message": "Logout realizado com sucesso"}

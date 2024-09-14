@@ -1,6 +1,8 @@
 from .models import Automovel
+from django.forms.models import model_to_dict
 
 class AutomovelController:
+    
     @staticmethod
     def criar_automovel(data, image):
         if Automovel.objects.filter(chassi=data.chassi).exists():
@@ -19,21 +21,36 @@ class AutomovelController:
     @staticmethod
     def listar_automoveis():
         automoveis = Automovel.objects.all()
+        if not automoveis:
+            return None
         return list(automoveis.values())
     
     @staticmethod
     def buscar_automovel(nome):
-        automovel = Automovel.objects.get(nome=nome)
-        return list(automovel.values())
+        try:
+            automovel = Automovel.objects.filter(nome=nome)
+            if automovel:
+                return list(automovel.values())
+            else:
+                return None
+        except Automovel.DoesNotExist:
+            return None
     
     @staticmethod
     def deletar_automovel(chassi):
-        automovel = Automovel.objects.get(chassi=chassi)
-        automovel.delete()
-        
+        try:
+            automovel = Automovel.objects.get(chassi=chassi)
+            automovel.delete()
+        except Automovel.DoesNotExist:
+            return None
+    
     @staticmethod
-    def atualizar_automovel(data):
-        automovel = Automovel.objects.get(chassi=data.chassi)
+    def atualizar_automovel(chassi, data):
+        try:
+            automovel = Automovel.objects.get(chassi=chassi)
+        except Automovel.DoesNotExist:
+            return None
+        
         if data.modelo is not None:
             automovel.modelo = data.modelo
         if data.nome is not None:

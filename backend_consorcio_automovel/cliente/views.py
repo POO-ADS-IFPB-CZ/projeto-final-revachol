@@ -1,5 +1,4 @@
 from ninja import NinjaAPI
-from ninja.errors import HttpError
 from cliente.controllers import ClienteController
 from cliente.schemas import ClienteSchema
 
@@ -16,11 +15,11 @@ class ClienteView:
                 cliente = ClienteController.criar_cliente(data)
                 
                 if cliente is None:
-                    raise HttpError(400, "Cliente já cadastrado")
+                    return {"status": 400, "message": "Cliente já cadastrado"}
             
                 return {"success": "Cliente cadastrado com sucesso"}
             else:
-                raise HttpError(401, "Unauthorized")
+                return {"status": 401, "message": "Autenticação necessária"}
     
 cliente_api = ClienteView()
 api = cliente_api.api
