@@ -13,7 +13,11 @@ class ClienteView:
         @self.api.post("/cadastrar")
         def cadastrar_cliente(request, data: ClienteSchema):
             if request.user.is_authenticated:
-                ClienteController.criar_cliente(data)
+                cliente = ClienteController.criar_cliente(data)
+                
+                if cliente is None:
+                    raise HttpError(400, "Cliente já cadastrado")
+            
                 return {"success": "Cliente cadastrado com sucesso"}
             else:
                 raise HttpError(401, "Unauthorized")
