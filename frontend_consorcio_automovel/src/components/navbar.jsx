@@ -11,16 +11,17 @@ export function Navbar() {
     { link: '/veiculos', label: 'Veículos', icon:<CarFront size={16} strokeWidth={1.8}/> },
     { link: '/vendas', label: 'Vendas', icon:<ShoppingCart size={16} strokeWidth={1.8}/> },
     { link: '/login', label: 'Login', icon:<LogIn size={16} strokeWidth={1.8}/> },
-    { link: '/cadastro', label: 'Cadastro', icon:<UserPlus size={16} strokeWidth={1.8}/> },
+    { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon:<UserPlus size={16} strokeWidth={1.8}/> },
+    { link: '/cadastro-funcionario', label: 'Cadastro Fucionario', icon:<UserPlus size={16} strokeWidth={1.8}/> },
     { link: '/', label: 'Sair', icon:<LogOut size={16} strokeWidth={1.8}/> },
   ]
 
   return (
     <nav
       ref={navbarRef}
-      className="hidden w-full relative sm:flex">
+      className="hidden w-full relative sm:flex sm:static z-10">
       <div
-        className="absolute bg-slate-200 -top-4 w-full flex flex-col p-4 gap-4 sm:flex-row sm:justify-center">
+        className="absolute bg-slate-200 top-[1px] w-full flex flex-col p-4 gap-4 sm:static sm:flex-row sm:justify-center">
         {links.map(link => (
           <Anchor 
             key={link.label} 

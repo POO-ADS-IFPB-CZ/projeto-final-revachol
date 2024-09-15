@@ -1,29 +1,39 @@
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
-import { Link } from "react-router-dom";
 import { Main } from "../components/main";
 import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
 
-export function Login() {
+export function RegistrationEmployee() {
   return (
     <Layout>
       <Header />
-      <Main className="flex justify-center items-center">
+      <Main className="flex justify-center items-center sm:items-start sm:pt-24">
 
         <form className="flex flex-col gap-2 w-full max-w-screen-sm">
-          <h1 className="text-2xl font-semibold">Login</h1>
+          <h1 className="text-2xl font-semibold">Cadastro de funcionario</h1>
+          <Input
+            type="text"
+            placeholder="nome" />
           <Input
             type="email"
             placeholder="email" />
           <Input
+            type="text"
+            placeholder="CPF" />
+          <Input
+            type="text"
+            placeholder="endereço" />
+          <Input
+            type="text"
+            placeholder="telefone" />
+          <Input
             type="password"
             placeholder="senha" />
           <div>
-            <ButtonIcon type="submit">Entrar</ButtonIcon>
+            <ButtonIcon type="submit">Salvar</ButtonIcon>
           </div>
-          <p>Não possui conta? <Link to="/cadastro" className="text-primary">Cadastre-se</Link></p>
         </form>
 
       </Main>

@@ -6,26 +6,33 @@ import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
 
-export function Login() {
+export function RegistrationClient() {
   return (
     <Layout>
       <Header />
-      <Main className="flex justify-center items-center">
+      <Main className="flex justify-center items-center sm:items-start sm:pt-24">
 
         <form className="flex flex-col gap-2 w-full max-w-screen-sm">
-          <h1 className="text-2xl font-semibold">Login</h1>
+          <h1 className="text-2xl font-semibold">Cadastro de cliente</h1>
+          <Input
+            type="text"
+            placeholder="nome" />
           <Input
             type="email"
             placeholder="email" />
           <Input
-            type="password"
-            placeholder="senha" />
+            type="text"
+            placeholder="CPF" />
+          <Input
+            type="text"
+            placeholder="endereço" />
+          <Input
+            type="text"
+            placeholder="telefone" />
           <div>
-            <ButtonIcon type="submit">Entrar</ButtonIcon>
+            <ButtonIcon type="submit">Salvar</ButtonIcon>
           </div>
-          <p>Não possui conta? <Link to="/cadastro" className="text-primary">Cadastre-se</Link></p>
         </form>
-
       </Main>
       <Footer />
 
