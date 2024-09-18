@@ -12,13 +12,13 @@ class AutomovelView:
     def register_routes(self):
         @self.api.get("/listar")
         def listar_automoveis(request):
-            if request.user.is_authenticated:
+            #if request.user.is_authenticated:
                 automoveis = AutomovelController.listar_automoveis()
                 if automoveis is None:
                     return JsonResponse({"status": 404, "message": "Nenhum automóvel cadastrado"}, status=404)
                 return JsonResponse({"automoveis": automoveis})
-            else:    
-                return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)
+            #else:    
+           #     return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)
         
         @self.api.get("/buscar/{nome}")
         def buscar_automovel(request, nome: str):
