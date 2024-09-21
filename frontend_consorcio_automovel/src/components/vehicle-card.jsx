@@ -5,7 +5,7 @@ import {ButtonIcon} from './button-icon'
 import { Save, Trash } from 'lucide-react'
 import photoCart from "../assets/imgs/car.jpg"
 
-function VehicleCard({nome, imagem, cor, chassi, preco, modelo }) {
+function VehicleCard({nome, cor, chassi, preco, modelo }) {
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
