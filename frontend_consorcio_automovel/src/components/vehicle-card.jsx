@@ -1,11 +1,11 @@
-import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import { Input } from './input'
-import photoCart from "../assets/imgs/car.jpg"
 import {ButtonIcon} from './button-icon'
 import { Save, Trash } from 'lucide-react'
+import photoCart from "../assets/imgs/car.jpg"
 
-function VehicleCard() {
+function VehicleCard({nome, imagem, cor, chassi, preco, modelo }) {
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -22,12 +22,12 @@ function VehicleCard() {
           className="w-full"
           src={photoCart}
           alt=""
-          srcset="" />
+          srcSet="" />
 
         <div className="p-4 w-full absolute bottom-0 text-white">
           <div className='flex justify-between p-2 backdrop-blur-[2px] rounded border border-primary'>
-            <p>Fusca</p>
-            <p>10000.00 R$</p>
+            <p>{nome}</p>
+            <p>{preco}</p>
           </div>
         </div>
       </div>
@@ -43,11 +43,11 @@ function VehicleCard() {
                 Fixa técnica
               </DialogTitle>
               <div className='flex flex-col gap-2'>
-                <Input type="text" placeholder="Chassi" value="Monobloco"/>
-                <Input type="text" placeholder="Modelo" value="Fusca Turbo"/>
-                <Input type="text" placeholder="Nome" value="Fusca"/>
+                <Input type="text" placeholder="Chassi" value={chassi}/>
+                <Input type="text" placeholder="Modelo" value={modelo}/>
+                <Input type="text" placeholder="Nome" value={nome}/>
                 <Input type="number" placeholder="Preço" value={1000}/>
-                <Input type="text" placeholder="Cor" value="Vermelho"/>
+                <Input type="text" placeholder="Cor" value={cor}/>
               </div>
 
               <div className='flex justify-between'>

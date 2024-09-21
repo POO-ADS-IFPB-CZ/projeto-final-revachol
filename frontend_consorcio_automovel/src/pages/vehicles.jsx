@@ -6,12 +6,30 @@ import { Modal } from "../components/modal";
 import { Input } from "../components/input";
 import VehicleCard from "../components/vehicle-card";
 import { Upload } from "lucide-react";
+import { useEffect, useState } from "react";
+import { loadVehicles } from "../utils/listVehicles";
+//import axios from "axios";
 
 export function Vehicles() {
-  const array = [1, 2, 3, 4, 5, 6, 7, 8]
 
-  function handleSaveVehicle() {
-    alert("Salvando")
+  const [vehicles, setVehicles] = useState({ automoveis: [] });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await loadVehicles(); // Chama a função que busca os veículos
+      if (data) {
+        setVehicles(data); // Atualiza o estado com os dados retornados
+      }
+    };
+
+    fetchData();
+
+    
+  }, []);
+
+
+  async function handleSaveVehicle() {   
+    console.log(vehicles.automoveis);
   }
   return (
     <Layout>
@@ -37,9 +55,17 @@ export function Vehicles() {
           </div>
 
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-2xl mx-auto">
-            {array.map(num => (
-              <VehicleCard key={num} />
-            ))}
+          {vehicles.automoveis ? vehicles.automoveis.map((index) => (
+            <VehicleCard 
+            nome={index.nome} 
+            chassi={index.chassi}
+            modelo={index.modelo}
+            preco={index.preco}
+            cor={index.cor} 
+            imagem={index.imagem} 
+            key={index} />
+            
+          )) : <p>Nenhum veículo encontrado.</p>}
           </div>
 
         </section>
