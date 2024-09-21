@@ -1,8 +1,10 @@
 export function ErrorMessage({message}) {
     return ( 
         <div className="flex flex-col ">
-        <h2 className="text-red-700 font-semibold">Erro!</h2>
-        <p className="text-red-800">{message}</p>
-      </div>
+            <div className="bg-red-200 text-red-700 p-4 rounded">
+          <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
+          <p className="mt-2">{message}</p>
+        </div>
+        </div>
      );
   }

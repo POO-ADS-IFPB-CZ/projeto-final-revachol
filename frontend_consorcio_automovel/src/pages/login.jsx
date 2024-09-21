@@ -3,24 +3,27 @@ import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
-import { login } from "../utils/login";
+import { authentication } from "../utils/login";
 import { Input } from "../components/input";
 import { useState } from "react";
 import { ErrorMessage } from "../components/errorMessage";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/authContext";
 
 export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   async function loginAutentication(e) {
     e.preventDefault();
-    const result = await login(username, password);
+    const result = await authentication(username, password);
     setVisible(false);
     if (result) {
+      login(result);
       console.log('Login realizado com sucesso:', result);
       navigate('/');
     } else {

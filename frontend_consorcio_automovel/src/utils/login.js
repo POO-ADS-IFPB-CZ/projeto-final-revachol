@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-export async function login(username, password) {
+export async function authentication(username, password) {
   try {
-    console.log(username, password);
     const response = await axios.post(
       'http://127.0.0.1:8000/api/vendedor/login',
       {
@@ -11,16 +10,14 @@ export async function login(username, password) {
       },
       {
         headers: {
-          'accept': '*/*', 
           'Content-Type': 'application/json', 
         },
        
-        withCredentials: false, 
+        withCredentials: true, 
       }
     );
 
     if (response.status === 200) {
-      console.log('Login bem-sucedido:', response.data);
       return response.data;
     } else {
       console.error('Falha no login. Status:', response.status);

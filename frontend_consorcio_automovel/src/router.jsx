@@ -6,10 +6,12 @@ import { RegistrationEmployee } from "./pages/registration-employee";
 import { Home } from "./pages/home";
 import { Sales } from "./pages/sales";
 import { NotFound } from "./pages/not-found";
+import { AuthProvider } from "./contexts/authContext";
 
 export function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter> 
+      <AuthProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login/>} />
@@ -20,6 +22,7 @@ export function Router() {
         <Route path="/vendas" element={<Sales />} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
   
