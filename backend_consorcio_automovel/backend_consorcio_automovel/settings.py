@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+ 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -57,14 +58,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  # Adicione aqui a origem do seu frontend
-]
-
-CORS_ALLOW_CREDENTIALS = True  # Permita o envio de cookies de autenticação
-
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
+CORS_ORIGIN_WHITELIST = ["http://localhost:5173"]
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = 'None'  # Para habilitar cross-site
+SESSION_COOKIE_SECURE = True  # Apenas se você estiver utilizando HTTPS
 
 ROOT_URLCONF = 'backend_consorcio_automovel.urls'
 

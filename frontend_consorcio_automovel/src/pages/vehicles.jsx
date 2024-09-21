@@ -11,7 +11,7 @@ import { loadVehicles } from "../utils/listVehicles";
 //import axios from "axios";
 
 export function Vehicles() {
-
+  
   const [vehicles, setVehicles] = useState({ automoveis: [] });
 
   useEffect(() => {

@@ -1,24 +1,20 @@
-import axios from 'axios';
-
 export async function authentication(username, password) {
   try {
-    const response = await axios.post(
-      'http://127.0.0.1:8000/api/vendedor/login',
-      {
+    const response = await fetch('http://127.0.0.1:8000/api/vendedor/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // Envia cookies junto com a requisição
+      body: JSON.stringify({
         username: username,
         password: password
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-       
-        withCredentials: true, 
-      }
-    );
+      })
+    });
 
     if (response.status === 200) {
-      return response.data;
+      const data = await response.json();
+      return data;
     } else {
       console.error('Falha no login. Status:', response.status);
       return null;

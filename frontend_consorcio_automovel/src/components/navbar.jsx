@@ -11,7 +11,6 @@ export function Navbar() {
     { link: '/', label: 'Inicio', icon:<House size={16} strokeWidth={1.8}/> },
     { link: '/veiculos', label: 'Veículos', icon:<CarFront size={16} strokeWidth={1.8}/> },
     { link: '/vendas', label: 'Vendas', icon:<ShoppingCart size={16} strokeWidth={1.8}/> },
-    { link: '/login', label: 'Login', icon:<LogIn size={16} strokeWidth={1.8}/> },
     { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon:<UserPlus size={16} strokeWidth={1.8}/> },
     { link: '/cadastro-funcionario', label: 'Cadastro Fucionario', icon:<UserPlus size={16} strokeWidth={1.8}/> },
     { link: '/', label: 'Sair', icon:<LogOut size={16} strokeWidth={1.8}/> },
