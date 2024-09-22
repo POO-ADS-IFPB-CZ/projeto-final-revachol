@@ -10,11 +10,12 @@ import { sellerRegister } from "../utils/sellerRegister";
 import { useAuth } from "../contexts/authContext";
 import { ErrorMessage } from "../components/errorMessage";
 import { SucessMessage } from "../components/sucessMessage";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function RegistrationEmployee() {
   const {user} = useAuth(); 
-
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -50,6 +51,15 @@ export function RegistrationEmployee() {
     setUltimoNome("");
     setUsername("");
   }
+
+  useEffect(() => {
+    const checkLogin = () => {
+      if(!user) {
+        navigate('/login');
+      }
+    }
+    checkLogin();
+  },[navigate, user]);
 
   return (
     <Layout>

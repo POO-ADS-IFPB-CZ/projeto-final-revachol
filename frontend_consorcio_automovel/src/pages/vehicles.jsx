@@ -8,10 +8,10 @@ import VehicleCard from "../components/vehicle-card";
 import { Upload } from "lucide-react";
 import { useEffect, useState } from "react";
 import { loadVehicles } from "../utils/listVehicles";
-//import axios from "axios";
+//import { useAuth } from "../contexts/authContext";
 
 export function Vehicles() {
-  
+ // const {user} = useAuth(); 
   const [vehicles, setVehicles] = useState({ automoveis: [] });
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import { Eye, Trash } from "lucide-react";
 import { useState } from "react";
 import { TextLocked } from './text-locked';
 
-export function SaleCard() {
+export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_venda, preco}) {
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -20,10 +20,10 @@ export function SaleCard() {
       <div className="bg-secondary p-4 flex gap-4">
         <div className="flex-grow">
           <div className="flex justify-between">
-            <p>Cliete</p>
-            <p>Vendedor</p>
+            <p>{cliente_id}</p>
+            <p>{vendedor_id}</p>
           </div>
-          <p className='text-sm'>Fusca</p>
+          <p className='text-sm'>{chassi}</p>
         </div>
         <div 
           onClick={open} 
@@ -45,24 +45,19 @@ export function SaleCard() {
               <div className='flex flex-col gap-2 max-h-[70vh] overflow-y-auto'>
 
                 <h1 className='font-semibold text-sm mt-2'>Funcionario</h1>
-                <TextLocked>Islan</TextLocked>
-                <TextLocked>marcena.gmail.com</TextLocked>
-                <TextLocked>111.222.333-50</TextLocked>
-                <TextLocked>Cajazeira - PB, numero 123</TextLocked>
-                <TextLocked>83 09779-9779</TextLocked>
+                <TextLocked>{vendedor_id}</TextLocked>
 
                 <h1 className='font-semibold text-sm mt-2'>Cliente</h1>
-                <TextLocked>Cliente Marcena</TextLocked>
-                <TextLocked>marcena.gmail.com</TextLocked>
-                <TextLocked>111.222.333-50</TextLocked>
-                <TextLocked>Cajazeira - PB, numero 123</TextLocked>
-                <TextLocked>83 09779-9779</TextLocked>
-
+                <TextLocked>{cliente_id}</TextLocked>
+    
                 <h1 className='font-semibold text-sm mt-2'>Veiculo</h1>
-                <TextLocked >Fusca</TextLocked>
-                <TextLocked >Fusca turbo pro</TextLocked>
-                <TextLocked >19999.00 RS</TextLocked>
-                <TextLocked >Vermelho</TextLocked>
+                <TextLocked >{chassi}</TextLocked>
+      
+                <h1 className='font-semibold text-sm mt-2'>Compra</h1>
+                <TextLocked >{codigo_venda}</TextLocked>
+                <TextLocked >{data_venda}</TextLocked>
+                <TextLocked >{preco}</TextLocked>
+
               </div>
 
               <div className='flex justify-between'>

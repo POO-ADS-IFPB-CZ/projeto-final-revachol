@@ -1,11 +1,13 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import { Input } from './input'
-import {ButtonIcon} from './button-icon'
+import { ButtonIcon } from './button-icon'
 import { Save, Trash } from 'lucide-react'
 import photoCart from "../assets/imgs/car.jpg"
+import { useAuth } from '../contexts/authContext'
 
-function VehicleCard({nome, cor, chassi, preco, modelo }) {
+function VehicleCard({ nome, cor, chassi, preco, modelo }) {
+  const { user } = useAuth();
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -43,23 +45,24 @@ function VehicleCard({nome, cor, chassi, preco, modelo }) {
                 Fixa técnica
               </DialogTitle>
               <div className='flex flex-col gap-2'>
-                <Input type="text" placeholder="Chassi" value={chassi}/>
-                <Input type="text" placeholder="Modelo" value={modelo}/>
-                <Input type="text" placeholder="Nome" value={nome}/>
-                <Input type="number" placeholder="Preço" value={1000}/>
-                <Input type="text" placeholder="Cor" value={cor}/>
+                <Input type="text" placeholder="Chassi" value={chassi} />
+                <Input type="text" placeholder="Modelo" value={modelo} />
+                <Input type="text" placeholder="Nome" value={nome} />
+                <Input type="number" placeholder="Preço" value={1000} />
+                <Input type="text" placeholder="Cor" value={cor} />
               </div>
+              {user && <div className='flex justify-between'>
 
-              <div className='flex justify-between'>
                 <ButtonIcon onClick={close}>
-                  <Save size={16}/>
+                  <Save size={16} />
                   Salvar
                 </ButtonIcon>
                 <ButtonIcon style="danger" onClick={close}>
-                  <Trash size={16}/>
+                  <Trash size={16} />
                   Excluir
                 </ButtonIcon>
-              </div>
+              </div>}
+
 
             </DialogPanel>
           </div>

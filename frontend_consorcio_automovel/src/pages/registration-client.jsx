@@ -5,14 +5,16 @@ import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
 import { customerRegister } from "../utils/customerRegister";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SucessMessage } from "../components/sucessMessage";
 import { ErrorMessage } from "../components/errorMessage";
 import { useAuth } from "../contexts/authContext";
+import { useNavigate } from "react-router-dom";
 
 
 export function RegistrationClient() {
   const {user} = useAuth(); 
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -22,6 +24,15 @@ export function RegistrationClient() {
   const [errorVisible, setErrorVisible] = useState(false);
   const [sucessVisible, setSucessVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    const checkLogin = () => {
+      if(!user) {
+        navigate('/login');
+      }
+    }
+    checkLogin();
+  },[navigate, user]);
 
   async function registerCustomer(e) {
     e.preventDefault();
