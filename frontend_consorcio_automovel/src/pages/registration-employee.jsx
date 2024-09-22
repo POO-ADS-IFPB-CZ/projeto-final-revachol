@@ -5,7 +5,7 @@ import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
 import { useState } from "react";
-import { sellerRegister } from "../utils/sellerRegister";
+import { sellerRegister } from "../utils/userSeller/sellerRegister";
 //import { authentication } from "../utils/login";
 import { useAuth } from "../contexts/authContext";
 import { ErrorMessage } from "../components/errorMessage";

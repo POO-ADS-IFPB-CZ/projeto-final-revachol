@@ -4,7 +4,7 @@ import { Main } from "../components/main";
 import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
-import { customerRegister } from "../utils/customerRegister";
+import { customerRegister } from "../utils/commonUser/customerRegister";
 import { useEffect, useState } from "react";
 import { SucessMessage } from "../components/sucessMessage";
 import { ErrorMessage } from "../components/errorMessage";

@@ -3,7 +3,7 @@ import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
-import { authentication } from "../utils/login";
+import { authentication } from "../utils/userSeller/login";
 import { Input } from "../components/input";
 import { useState } from "react";
 import { ErrorMessage } from "../components/errorMessage";

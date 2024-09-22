@@ -3,7 +3,7 @@ import { ButtonIcon } from './button-icon';
 import { Eye, Trash } from "lucide-react";
 import { useState } from "react";
 import { TextLocked } from './text-locked';
-import { deleteSale } from '../utils/deleteSale';
+import { deleteSale } from '../utils/sales/deleteSale';
 
 export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_venda, preco, onDeleteSale}) {
   let [isOpen, setIsOpen] = useState(false)
@@ -50,18 +50,18 @@ export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_ve
               <div className='flex flex-col gap-2 max-h-[70vh] overflow-y-auto'>
 
                 <h1 className='font-semibold text-sm mt-2'>Funcionario</h1>
-                <TextLocked>{vendedor_id}</TextLocked>
+                <TextLocked>Username: {vendedor_id}</TextLocked>
 
                 <h1 className='font-semibold text-sm mt-2'>Cliente</h1>
-                <TextLocked>{cliente_id}</TextLocked>
+                <TextLocked>CPF: {cliente_id}</TextLocked>
     
                 <h1 className='font-semibold text-sm mt-2'>Veiculo</h1>
-                <TextLocked >{chassi}</TextLocked>
+                <TextLocked >Chassi: {chassi}</TextLocked>
       
                 <h1 className='font-semibold text-sm mt-2'>Compra</h1>
-                <TextLocked >{codigo_venda}</TextLocked>
-                <TextLocked >{data_venda}</TextLocked>
-                <TextLocked >{preco}</TextLocked>
+                <TextLocked >Código da venda: {codigo_venda}</TextLocked>
+                <TextLocked >Data da venda: {data_venda}</TextLocked>
+                <TextLocked >Preço: {preco}</TextLocked>
 
               </div>
 

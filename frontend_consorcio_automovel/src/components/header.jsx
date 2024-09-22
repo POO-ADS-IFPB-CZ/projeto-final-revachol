@@ -4,8 +4,13 @@ import { Toggle } from "./toggle";
 import { ToggleProvider } from "../contexts/toggle";
 import { useLocation } from "react-router-dom";
 
-export function Header() {
+export function Header({onSearchChange}) {
   const location = useLocation()
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    onSearchChange(value); 
+  };
 
   const inputIsVisible = location.pathname == "/veiculos" || location.pathname == "/vendas" ? true: false
   return (
@@ -16,7 +21,7 @@ export function Header() {
             <h1 className="text-2xl text-primary font-medium">Nome do site</h1>
             <Toggle />
           </div>
-          {inputIsVisible && <InputHeader placeholder={location.pathname}/>}
+          {inputIsVisible && <InputHeader onChange={handleInputChange} placeholder={location.pathname}/>}
         </div>
         <Navbar />
       </header>

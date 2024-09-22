@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SaleCard } from "../components/sale-card";
 import { useAuth } from "../contexts/authContext";
-import { loadSales } from "../utils/getSales";
-import { addSale } from "../utils/addSale";
+import { loadSales } from "../utils/sales/getSales";
+import { addSale } from "../utils/sales/addSale";
 
 
 export function Sales() {
@@ -18,6 +18,7 @@ export function Sales() {
   const [cpf, setCpf] = useState("");
   const [chassi, setChassi] = useState("");
   const [sales, setSales] = useState({ vendas: [] });
+  const [filteredSales, setFilteredSales] = useState({ vendas: [] });
 
 
   //função que salva a venda
@@ -40,7 +41,8 @@ export function Sales() {
   async function refreshSales(){
     const data = await loadSales(); // Chama a função que busca os veículos
       if (data) {
-        setSales(data); // Atualiza o estado com os dados retornados
+        setSales(data);
+        setFilteredSales(data); 
       }
   }
   useEffect(() => {
@@ -56,9 +58,21 @@ export function Sales() {
     checkLogin();
   },[navigate, user]);
 
+
+  function handleSearch(value) {
+    if (value === '') {
+      setFilteredSales(sales);
+    } else {
+      const filtered = sales.vendas.filter(sale => 
+        sale.username_vendedor_id.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredSales({ vendas: filtered });    
+    }
+  }
+
   return (
     <Layout>
-      <Header />
+      <Header onSearchChange={handleSearch}/>
       <Main>
         <section className="space-y-4">
         <div className="flex justify-between items-center">
@@ -75,7 +89,7 @@ export function Sales() {
             </Modal> 
           </div>
           <div className="flex flex-col gap-4 max-w-xl mx-auto">
-          {sales.vendas ? sales.vendas.map((venda) => (
+          {filteredSales.vendas ? filteredSales.vendas.map((venda) => (
               <SaleCard 
               key={venda.codigo_venda} 
               cliente_id={venda.cpf_cliente_id}

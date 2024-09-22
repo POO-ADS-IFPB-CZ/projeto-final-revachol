@@ -6,9 +6,10 @@ import { Save, Trash } from 'lucide-react'
 import photoCart from "../assets/imgs/car.jpg"
 import { useAuth } from '../contexts/authContext'
 import { TextLocked } from './text-locked'
-import { deleteVehicles } from '../utils/deleteVehicle'
+import { deleteVehicles } from '../utils/vehicles/deleteVehicle'
+import { updateVehicles } from '../utils/vehicles/updateVehicle'
 
-function VehicleCard({ nome, cor, chassi, preco, modelo, onDeleteVehicle }) {
+function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle }) {
   const { user } = useAuth();
   const [nomeCarro, setNomeCarro] = useState(nome);
   const [corCarro, setCor] = useState(cor);
@@ -25,10 +26,15 @@ function VehicleCard({ nome, cor, chassi, preco, modelo, onDeleteVehicle }) {
   function close() {
     setIsOpen(false)
   }
+  async function updateVehicleFunction() {
+    await updateVehicles(chassi, modeloCarro, nomeCarro, precoCarro, corCarro)
+    onChangeVehicle();
+    
+  }
 
   async function deleteVehicleFunction(){
       await deleteVehicles(chassi);
-      onDeleteVehicle();
+      onChangeVehicle();
   }
   return (
     <>
@@ -91,7 +97,7 @@ function VehicleCard({ nome, cor, chassi, preco, modelo, onDeleteVehicle }) {
 
               {user && <div className='flex justify-between'>
 
-                <ButtonIcon onClick={close}>
+                <ButtonIcon onClick={updateVehicleFunction}>
                   <Save size={16} />
                   Salvar
                 </ButtonIcon>
