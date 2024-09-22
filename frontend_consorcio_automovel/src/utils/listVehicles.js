@@ -5,7 +5,7 @@ export async function loadVehicles() {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include' // Inclui cookies na requisição
+      credentials: 'include' 
     });
 
     if (response.ok) {

@@ -4,7 +4,6 @@ export async function customerRegister(nome, cpf, telefone, email, endereco) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          
         },
         credentials: 'include', 
         body: JSON.stringify({

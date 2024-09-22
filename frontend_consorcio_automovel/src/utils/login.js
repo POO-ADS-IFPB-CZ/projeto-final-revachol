@@ -5,7 +5,7 @@ export async function authentication(username, password) {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include', // Envia cookies junto com a requisição
+      credentials: 'include', 
       body: JSON.stringify({
         username: username,
         password: password

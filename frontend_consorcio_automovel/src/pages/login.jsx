@@ -25,7 +25,6 @@ export function Login() {
     if (result) {
       login(result);
       console.log('Login realizado com sucesso:', result);
-      console.log(document.cookie);
       navigate('/');
     } else {
       console.log('Falha no login', result);

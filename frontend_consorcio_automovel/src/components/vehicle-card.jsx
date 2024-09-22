@@ -5,9 +5,17 @@ import { ButtonIcon } from './button-icon'
 import { Save, Trash } from 'lucide-react'
 import photoCart from "../assets/imgs/car.jpg"
 import { useAuth } from '../contexts/authContext'
+import { TextLocked } from './text-locked'
+import { deleteVehicles } from '../utils/deleteVehicle'
 
-function VehicleCard({ nome, cor, chassi, preco, modelo }) {
+function VehicleCard({ nome, cor, chassi, preco, modelo, onDeleteVehicle }) {
   const { user } = useAuth();
+  const [nomeCarro, setNomeCarro] = useState(nome);
+  const [corCarro, setCor] = useState(cor);
+  const [precoCarro, setPreco] = useState(preco);
+  const [modeloCarro, setModelo] = useState(modelo);
+
+
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -16,6 +24,11 @@ function VehicleCard({ nome, cor, chassi, preco, modelo }) {
 
   function close() {
     setIsOpen(false)
+  }
+
+  async function deleteVehicleFunction(){
+      await deleteVehicles(chassi);
+      onDeleteVehicle();
   }
   return (
     <>
@@ -44,20 +57,45 @@ function VehicleCard({ nome, cor, chassi, preco, modelo }) {
               <DialogTitle as="h3" className="text-lg font-semibold text-primary">
                 Fixa técnica
               </DialogTitle>
-              <div className='flex flex-col gap-2'>
-                <Input type="text" placeholder="Chassi" value={chassi} />
-                <Input type="text" placeholder="Modelo" value={modelo} />
-                <Input type="text" placeholder="Nome" value={nome} />
-                <Input type="number" placeholder="Preço" value={1000} />
-                <Input type="text" placeholder="Cor" value={cor} />
-              </div>
+
+              {user ?
+                <div className='flex flex-col gap-2'>
+                  <TextLocked >Chassi: {chassi}</TextLocked>
+                  <Input type="text" placeholder="Modelo" 
+                  value={modeloCarro} 
+                  onChange={e => setModelo(e.target.value)}
+                  />
+                  <Input type="text" placeholder="Nome" 
+                  value={nomeCarro} 
+                  onChange={e => setNomeCarro(e.target.value)}
+                  />
+                  <Input type="number" placeholder="Preço" 
+                  value={precoCarro} 
+                  onChange={e => setPreco(e.target.value)}
+                  />
+                  <Input type="text" placeholder="Cor" 
+                  value={corCarro} 
+                  onChange={e => setCor(e.target.value)}
+                  />
+                </div>
+                :   <div className='flex flex-col gap-2'>
+                  <TextLocked >Chassi: {chassi}</TextLocked>
+                  <TextLocked >Modelo: {modeloCarro}</TextLocked>
+                  <TextLocked >Nome: {nomeCarro}</TextLocked>
+                  <TextLocked >Preco: {precoCarro}</TextLocked>
+                  <TextLocked >Cor: {corCarro}</TextLocked>
+
+
+                  </div>}
+
+
               {user && <div className='flex justify-between'>
 
                 <ButtonIcon onClick={close}>
                   <Save size={16} />
                   Salvar
                 </ButtonIcon>
-                <ButtonIcon style="danger" onClick={close}>
+                <ButtonIcon style="danger" onClick={deleteVehicleFunction}>
                   <Trash size={16} />
                   Excluir
                 </ButtonIcon>

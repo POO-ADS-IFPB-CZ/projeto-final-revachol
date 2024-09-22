@@ -4,7 +4,6 @@ export async function addSale(cpf, chassi) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          
         },
         credentials: 'include', 
         body: JSON.stringify({
