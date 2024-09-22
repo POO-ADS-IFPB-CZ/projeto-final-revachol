@@ -10,7 +10,8 @@ import { SaleCard } from "../components/sale-card";
 import { useAuth } from "../contexts/authContext";
 import { loadSales } from "../utils/sales/getSales";
 import { addSale } from "../utils/sales/addSale";
-
+import { ErrorMessage } from "../components/errorMessage";
+import { SucessMessage } from "../components/sucessMessage";
 
 export function Sales() {
   const {user} = useAuth(); 
@@ -19,7 +20,10 @@ export function Sales() {
   const [chassi, setChassi] = useState("");
   const [sales, setSales] = useState({ vendas: [] });
   const [filteredSales, setFilteredSales] = useState({ vendas: [] });
-
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [sucessVisible, setSucessVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [sucessMessage, setSucessMessage] = useState('');
 
   //função que salva a venda
   async function handleSaveSale() {
@@ -30,11 +34,11 @@ export function Sales() {
   }
 
   async function addSales(){
-    const result = addSale(cpf, chassi);
+    const result = await addSale(cpf, chassi);
     if(result){
-      console.log("Cadastro bem sucedido");
+      sucessRequisition("Venda adicionada!");
     } else {
-      console.log("erro");
+      errorRequisition("Verifique se os valores estão corretos!");
     }
   }
 
@@ -70,10 +74,23 @@ export function Sales() {
     }
   }
 
+  function sucessRequisition(message){
+    setErrorVisible(false);
+    setSucessVisible(true);
+    setSucessMessage(message);
+  }
+
+  function errorRequisition(message){
+    setErrorVisible(true);
+    setSucessVisible(false);
+    setErrorMessage(message);
+  }
+
   return (
     <Layout>
       <Header onSearchChange={handleSearch}/>
       <Main>
+        
         <section className="space-y-4">
         <div className="flex justify-between items-center">
             <h1 className="text-lg font-semibold text-primary">Vendas</h1>
@@ -88,6 +105,8 @@ export function Sales() {
               />
             </Modal> 
           </div>
+          {errorVisible && <ErrorMessage message={errorMessage}/>}
+          {sucessVisible && <SucessMessage message={sucessMessage}/>}
           <div className="flex flex-col gap-4 max-w-xl mx-auto">
           {filteredSales.vendas ? filteredSales.vendas.map((venda) => (
               <SaleCard 
@@ -98,6 +117,8 @@ export function Sales() {
               codigo_venda={venda.codigo_venda}
               data_venda={venda.data_venda}
               preco={venda.preco}
+              sucessRequisition={sucessRequisition}
+              errorRequisition={errorRequisition}
               onDeleteSale={refreshSales}
               />
             

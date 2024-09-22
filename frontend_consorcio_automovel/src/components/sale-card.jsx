@@ -5,7 +5,7 @@ import { useState } from "react";
 import { TextLocked } from './text-locked';
 import { deleteSale } from '../utils/sales/deleteSale';
 
-export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_venda, preco, onDeleteSale}) {
+export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_venda, preco, onDeleteSale,  sucessRequisition, errorRequisition}) {
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -16,7 +16,12 @@ export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_ve
     setIsOpen(false)
   }
   async function deleteSaleFunction() {
-    await deleteSale(codigo_venda);
+    const result = await deleteSale(codigo_venda);
+    if (result){
+      sucessRequisition("Venda deletada!");
+    } else {
+      errorRequisition("Falha na remoção da venda!");
+    }
     onDeleteSale();
   }
 

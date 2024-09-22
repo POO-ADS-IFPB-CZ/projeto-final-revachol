@@ -5,7 +5,8 @@ import { Layout } from "../components/layout";
 import { Modal } from "../components/modal";
 import { Input } from "../components/input";
 import VehicleCard from "../components/vehicle-card";
-//import { Upload } from "lucide-react";
+import { SucessMessage } from "../components/sucessMessage";
+import { ErrorMessage } from "../components/errorMessage";
 import { useEffect, useState } from "react";
 import { loadVehicles } from "../utils/vehicles/listVehicles";
 import { addVehicle } from "../utils/vehicles/addVehicle";
@@ -20,9 +21,12 @@ export function Vehicles() {
   const [modeloCarro, setModelo] = useState("");
   const [imagem, setImagem] = useState();
 
-  //const [searchValue, setSearchValue] = useState('');
   const [vehicles, setVehicles] = useState({ automoveis: [] });
   const [filteredVehicles, setFilteredVehicles] = useState({ automoveis: [] });
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [sucessVisible, setSucessVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [sucessMessage, setSucessMessage] = useState('');
 
   function cleanInputs() {
     setChassi("");
@@ -47,14 +51,29 @@ export function Vehicles() {
 
   async function handleSaveVehicle() {
     console.log(imagem);
-    let result = await addVehicle(chassi, modeloCarro, nomeCarro, precoCarro, corCarro, imagem);
-    if (result) {
-      console.log("Cadastro bem sucedido");
-    } else {
-      console.log("erro");
+    if(chassi && modeloCarro && nomeCarro && precoCarro && corCarro && imagem){
+      let result = await addVehicle(chassi, modeloCarro, nomeCarro, precoCarro, corCarro, imagem);
+      if (result) {
+        sucessRequisition("Cadastro bem sucedido");
+      } else {
+        errorRequisition("Falha no cadastro de veículo");
+      }
+      refreshVehicles();
+      cleanInputs();
     }
-    refreshVehicles();
-    cleanInputs();
+    
+  }
+
+  function sucessRequisition(message){
+    setErrorVisible(false);
+    setSucessVisible(true);
+    setSucessMessage(message);
+  }
+
+  function errorRequisition(message){
+    setErrorVisible(true);
+    setSucessVisible(false);
+    setErrorMessage(message);
   }
 
   function handleChange(event) {
@@ -112,7 +131,8 @@ export function Vehicles() {
             }
 
           </div>
-
+          {errorVisible && <ErrorMessage message={errorMessage}/>}
+          {sucessVisible && <SucessMessage message={sucessMessage}/>}
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-2xl mx-auto">
             {filteredVehicles.automoveis ? filteredVehicles.automoveis.map((index) => (
               <VehicleCard
@@ -123,6 +143,8 @@ export function Vehicles() {
                 cor={index.cor}
                 imagem={index.imagem}
                 key={index.chassi}
+                sucessRequisition={sucessRequisition}
+                errorRequisition={errorRequisition}
                 onChangeVehicle={refreshVehicles}
               />
 

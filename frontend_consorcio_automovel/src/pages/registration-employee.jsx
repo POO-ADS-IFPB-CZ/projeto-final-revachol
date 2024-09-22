@@ -71,7 +71,7 @@ export function RegistrationEmployee() {
        
         <form onSubmit={registerAutentication} className="flex flex-col gap-2 w-full max-w-screen-sm">
         {errorVisible && <ErrorMessage message={errorMessage}/>}
-        {sucessVisible && <SucessMessage/>}
+        {sucessVisible && <SucessMessage message="Funcionário cadastrado!"/>}
           <h1 className="text-2xl font-semibold">Cadastro de Funcionário</h1>
           <Input
             type="text"

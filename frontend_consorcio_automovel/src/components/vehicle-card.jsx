@@ -9,7 +9,7 @@ import { TextLocked } from './text-locked'
 import { deleteVehicles } from '../utils/vehicles/deleteVehicle'
 import { updateVehicles } from '../utils/vehicles/updateVehicle'
 
-function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle }) {
+function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle, sucessRequisition, errorRequisition }) {
   const { user } = useAuth();
   const [nomeCarro, setNomeCarro] = useState(nome);
   const [corCarro, setCor] = useState(cor);
@@ -27,13 +27,25 @@ function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle }) {
     setIsOpen(false)
   }
   async function updateVehicleFunction() {
-    await updateVehicles(chassi, modeloCarro, nomeCarro, precoCarro, corCarro)
-    onChangeVehicle();
+    const result = await updateVehicles(chassi, modeloCarro, nomeCarro, precoCarro, corCarro)
+    if(result){
+      onChangeVehicle();
+      sucessRequisition("Veículo atualizado!");
+    } else {
+      errorRequisition("Falha na atualização!");
+    }
+    
     
   }
 
   async function deleteVehicleFunction(){
-      await deleteVehicles(chassi);
+      const result = await deleteVehicles(chassi);
+      if(result){
+        onChangeVehicle();
+        sucessRequisition("Veículo deletado!");
+      } else {
+        errorRequisition("Falha na remoção do veículo!");
+      }
       onChangeVehicle();
   }
   return (
