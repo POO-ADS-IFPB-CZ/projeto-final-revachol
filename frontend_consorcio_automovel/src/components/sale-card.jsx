@@ -3,8 +3,9 @@ import { ButtonIcon } from './button-icon';
 import { Eye, Trash } from "lucide-react";
 import { useState } from "react";
 import { TextLocked } from './text-locked';
+import { deleteSale } from '../utils/deleteSale';
 
-export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_venda, preco}) {
+export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_venda, preco, onDeleteSale}) {
   let [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -13,6 +14,10 @@ export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_ve
 
   function close() {
     setIsOpen(false)
+  }
+  async function deleteSaleFunction() {
+    await deleteSale(codigo_venda);
+    onDeleteSale();
   }
 
   return (
@@ -61,7 +66,7 @@ export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_ve
               </div>
 
               <div className='flex justify-between'>
-                <ButtonIcon style="danger" onClick={close}>
+                <ButtonIcon style="danger" onClick={deleteSaleFunction}>
                   <Trash size={16} />
                   Excluir
                 </ButtonIcon>

@@ -14,9 +14,7 @@ class VendedorView:
         @self.api.post("/cadastrar")
         def cadastrar_vendedor(request, data: VendedorSchema):
             if not request.user.is_authenticated:
-                print(request.user)
                 return JsonResponse({"status": 401, "message": "Autenticação necessária como administrador"}, status=401)
-            
             vendedor = VendedorController.criar_vendedor(data)
              
             if vendedor is None:
@@ -26,11 +24,8 @@ class VendedorView:
     
         @self.api.post("/login")
         def login_vendedor(request, data: LoginSchema):
-            user = VendedorController.login_vendedor(request, data)
-           
+            user = VendedorController.login_vendedor(request, data)       
             if user is not None:
-                print(request.user)
-                print(request.user.get_session_auth_hash())
                 return JsonResponse({"success": "User autenticado"}, status=200)
             else:
                 return JsonResponse({"status": 401, "message": "Senha ou User incorretos"}, status=401)

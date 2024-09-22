@@ -77,13 +77,14 @@ export function Sales() {
           <div className="flex flex-col gap-4 max-w-xl mx-auto">
           {sales.vendas ? sales.vendas.map((venda) => (
               <SaleCard 
-              key={venda} 
+              key={venda.codigo_venda} 
               cliente_id={venda.cpf_cliente_id}
               vendedor_id={venda.username_vendedor_id}
               chassi={venda.chassi_automovel_id}
               codigo_venda={venda.codigo_venda}
               data_venda={venda.data_venda}
               preco={venda.preco}
+              onDeleteSale={refreshSales}
               />
             
           )) : <p>Nenhuma venda encontrada.</p>}
