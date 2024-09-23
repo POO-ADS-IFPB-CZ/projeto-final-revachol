@@ -3,13 +3,13 @@ import { useState } from 'react'
 import { Input } from './input'
 import { ButtonIcon } from './button-icon'
 import { Save, Trash } from 'lucide-react'
-import photoCart from "../assets/imgs/car.jpg"
+
 import { useAuth } from '../contexts/authContext'
 import { TextLocked } from './text-locked'
 import { deleteVehicles } from '../utils/vehicles/deleteVehicle'
 import { updateVehicles } from '../utils/vehicles/updateVehicle'
 
-function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle, sucessRequisition, errorRequisition }) {
+function VehicleCard({ nome, cor, chassi, preco, modelo,imagem,  onChangeVehicle, sucessRequisition, errorRequisition }) {
   const { user } = useAuth();
   const [nomeCarro, setNomeCarro] = useState(nome);
   const [corCarro, setCor] = useState(cor);
@@ -40,11 +40,11 @@ function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle, sucess
 
   async function deleteVehicleFunction(){
       const result = await deleteVehicles(chassi);
+      console.log(chassi);
       if(result){
-        onChangeVehicle();
         sucessRequisition("Veículo deletado!");
       } else {
-        errorRequisition("Falha na remoção do veículo!");
+        errorRequisition("Falha na remoção do veículo! Verifique se o veículo não está sendo usado em alguma venda");
       }
       onChangeVehicle();
   }
@@ -53,7 +53,7 @@ function VehicleCard({ nome, cor, chassi, preco, modelo, onChangeVehicle, sucess
       <div onClick={open} className="w-full relative cursor-pointer vehicle-card">
         <img
           className="w-full"
-          src={photoCart}
+          src={"http://localhost:8000/media/"+imagem}
           alt=""
           srcSet="" />
 

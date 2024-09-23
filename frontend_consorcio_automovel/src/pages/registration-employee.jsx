@@ -70,9 +70,10 @@ export function RegistrationEmployee() {
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
        
         <form onSubmit={registerAutentication} className="flex flex-col gap-2 w-full max-w-screen-sm">
-        {errorVisible && <ErrorMessage message={errorMessage}/>}
-        {sucessVisible && <SucessMessage message="Funcionário cadastrado!"/>}
+        
           <h1 className="text-2xl font-semibold">Cadastro de Funcionário</h1>
+          {errorVisible && <ErrorMessage message={errorMessage}/>}
+          {sucessVisible && <SucessMessage message="Funcionário cadastrado!"/>}
           <Input
             type="text"
             placeholder="username"

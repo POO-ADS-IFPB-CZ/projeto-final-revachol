@@ -26,13 +26,11 @@ export function RegistrationClient() {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    const checkLogin = () => {
-      if(!user) {
-        navigate('/login');
-      }
+    
+    if (!user) {
+      navigate('/login');
     }
-    checkLogin();
-  },[navigate, user]);
+  }, [navigate, user]);
 
   async function registerCustomer(e) {
     e.preventDefault();
@@ -67,9 +65,9 @@ export function RegistrationClient() {
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
 
         <form onSubmit={registerCustomer}  className="flex flex-col gap-2 w-full max-w-screen-sm">
-         {errorVisible && <ErrorMessage message={errorMessage}/>}
-         {sucessVisible && <SucessMessage message="Cliente cadastrado!"/>}
           <h1 className="text-2xl font-semibold">Cadastro de cliente</h1>
+          {errorVisible && <ErrorMessage message={errorMessage}/>}
+          {sucessVisible && <SucessMessage message="Cliente cadastrado!"/>}
           <Input
             type="text"
             placeholder="nome" 

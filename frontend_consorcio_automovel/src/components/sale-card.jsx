@@ -30,10 +30,10 @@ export function SaleCard({cliente_id, vendedor_id, chassi, codigo_venda, data_ve
       <div className="bg-secondary p-4 flex gap-4">
         <div className="flex-grow">
           <div className="flex justify-between">
-            <p>{cliente_id}</p>
+            <p><strong>Cpf do cliente:</strong> {cliente_id}</p>
             <p>{vendedor_id}</p>
           </div>
-          <p className='text-sm'>{chassi}</p>
+          <p className='text-sm'> <strong>Chassi:</strong>  {chassi}</p>
         </div>
         <div 
           onClick={open} 
