@@ -7,20 +7,32 @@ import { CarFront, House, LogIn, LogOut, ShoppingCart, UserPlus } from "lucide-r
 export function Navbar() {
   const {user} = useAuth(); 
   const { navbarRef } = useContext(ToggleContext)
-  const links = [
-    { link: '/', label: 'Inicio', icon:<House size={16} strokeWidth={1.8}/> },
-    { link: '/veiculos', label: 'Veículos', icon:<CarFront size={16} strokeWidth={1.8}/> },
-    { link: '/vendas', label: 'Vendas', icon:<ShoppingCart size={16} strokeWidth={1.8}/> },
-    { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon:<UserPlus size={16} strokeWidth={1.8}/> },
-    { link: '/cadastro-funcionario', label: 'Cadastro Fucionario', icon:<UserPlus size={16} strokeWidth={1.8}/> },
-    { link: '/logout', label: 'Sair', icon:<LogOut size={16} strokeWidth={1.8}/> },
-  ]
+  let links = [];
+
+  if (user?.isStaff) {
+    links = [
+      { link: '/', label: 'Inicio', icon: <House size={16} strokeWidth={1.8}/> },
+      { link: '/veiculos', label: 'Veículos', icon: <CarFront size={16} strokeWidth={1.8}/> },
+      { link: '/vendas', label: 'Vendas', icon: <ShoppingCart size={16} strokeWidth={1.8}/> },
+      { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon: <UserPlus size={16} strokeWidth={1.8}/> },
+      { link: '/cadastro-funcionario', label: 'Cadastro Funcionário', icon: <UserPlus size={16} strokeWidth={1.8}/> },
+      { link: '/logout', label: 'Sair', icon: <LogOut size={16} strokeWidth={1.8}/> },
+    ];
+  } else {
+    links = [
+      { link: '/', label: 'Inicio', icon: <House size={16} strokeWidth={1.8}/> },
+      { link: '/veiculos', label: 'Veículos', icon: <CarFront size={16} strokeWidth={1.8}/> },
+      { link: '/vendas', label: 'Vendas', icon: <ShoppingCart size={16} strokeWidth={1.8}/> },
+      { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon: <UserPlus size={16} strokeWidth={1.8}/> },
+      { link: '/logout', label: 'Sair', icon: <LogOut size={16} strokeWidth={1.8}/> },
+    ];
+  }
 
   const guestLinks = [
-    { link: '/', label: 'Inicio', icon:<House size={16} strokeWidth={1.8}/> },
-    { link: '/veiculos', label: 'Veículos', icon:<CarFront size={16} strokeWidth={1.8}/> },
-    { link: '/login', label: 'Login', icon:<LogIn size={16} strokeWidth={1.8}/> }
-  ]
+    { link: '/', label: 'Inicio', icon: <House size={16} strokeWidth={1.8}/> },
+    { link: '/veiculos', label: 'Veículos', icon: <CarFront size={16} strokeWidth={1.8}/> },
+    { link: '/login', label: 'Login', icon: <LogIn size={16} strokeWidth={1.8}/> }
+  ];
 
   return (
     <nav
@@ -45,6 +57,7 @@ export function Navbar() {
           </Anchor>
         ))
         }
+
       </div>
     </nav>
   );

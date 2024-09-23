@@ -10,12 +10,9 @@ import { sellerRegister } from "../utils/userSeller/sellerRegister";
 import { useAuth } from "../contexts/authContext";
 import { ErrorMessage } from "../components/errorMessage";
 import { SucessMessage } from "../components/sucessMessage";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export function RegistrationEmployee() {
   const {user} = useAuth(); 
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -52,21 +49,12 @@ export function RegistrationEmployee() {
     setUsername("");
   }
 
-  useEffect(() => {
-    const checkLogin = () => {
-      if(!user) {
-        navigate('/login');
-      }
-    }
-    checkLogin();
-  },[navigate, user]);
-
   return (
     <Layout>
     <Header />
     
     {/* Verifica se o usuário está logado */}
-    {user ? (
+    {user?.isStaff ? (
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
        
         <form onSubmit={registerAutentication} className="flex flex-col gap-2 w-full max-w-screen-sm">
@@ -114,7 +102,7 @@ export function RegistrationEmployee() {
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
         <div className="bg-red-200 text-red-700 p-4 rounded">
           <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
-          <p className="mt-2">Você precisa estar logado para cadastrar funcionários.</p>
+          <p className="mt-2">Realize login</p>
         </div>
       </Main>
     )}

@@ -5,16 +5,13 @@ import { Input } from "../components/input";
 import { Layout } from "../components/layout";
 import { ButtonIcon } from "../components/button-icon"
 import { customerRegister } from "../utils/commonUser/customerRegister";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SucessMessage } from "../components/sucessMessage";
 import { ErrorMessage } from "../components/errorMessage";
 import { useAuth } from "../contexts/authContext";
-import { useNavigate } from "react-router-dom";
-
 
 export function RegistrationClient() {
   const {user} = useAuth(); 
-  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -25,12 +22,6 @@ export function RegistrationClient() {
   const [sucessVisible, setSucessVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    
-    if (!user) {
-      navigate('/login');
-    }
-  }, [navigate, user]);
 
   async function registerCustomer(e) {
     e.preventDefault();
@@ -105,7 +96,7 @@ export function RegistrationClient() {
         <Main className="flex justify-center items-center sm:items-start sm:pt-24">
           <div className="bg-red-200 text-red-700 p-4 rounded">
             <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
-            <p className="mt-2">Você precisa estar logado para cadastrar Clientes</p>
+            <p className="mt-2">Realize login</p>
           </div>
         </Main>
       )}

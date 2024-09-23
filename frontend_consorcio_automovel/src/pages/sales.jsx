@@ -5,7 +5,6 @@ import { Layout } from "../components/layout";
 import { Modal } from "../components/modal";
 import { Input } from "../components/input";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SaleCard } from "../components/sale-card";
 import { useAuth } from "../contexts/authContext";
 import { loadSales } from "../utils/sales/getSales";
@@ -15,7 +14,6 @@ import { SucessMessage } from "../components/sucessMessage";
 
 export function Sales() {
   const {user} = useAuth(); 
-  const navigate = useNavigate();
   const [cpf, setCpf] = useState("");
   const [chassi, setChassi] = useState("");
   const [sales, setSales] = useState({ vendas: [] });
@@ -53,15 +51,6 @@ export function Sales() {
     refreshSales();
   }, []);
 
-  useEffect(() => {
-    const checkLogin = () => {
-      if(!user) {
-        navigate('/login');
-      }
-    }
-    checkLogin();
-  },[navigate, user]);
-
 
   function handleSearch(value) {
     if (value === '') {
@@ -89,8 +78,8 @@ export function Sales() {
   return (
     <Layout>
       <Header onSearchChange={handleSearch}/>
+      {user ? (
       <Main>
-        
         <section className="space-y-4">
         <div className="flex justify-between items-center">
             <h1 className="text-lg font-semibold text-primary">Vendas</h1>
@@ -127,6 +116,15 @@ export function Sales() {
 
         </section>
       </Main>
+      ) : (
+        // Exibe mensagem caso o usuário não esteja logado
+        <Main className="flex justify-center items-center sm:items-start sm:pt-24">
+          <div className="bg-red-200 text-red-700 p-4 rounded">
+            <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
+            <p className="mt-2">Realize login</p>
+          </div>
+        </Main>
+      )}
       <Footer />
     </Layout>
   );
