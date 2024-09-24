@@ -50,9 +50,8 @@ export function Vehicles() {
   }, []);
 
   async function handleSaveVehicle() {
-    console.log(imagem);
     if(chassi && modeloCarro && nomeCarro && precoCarro && corCarro && imagem){
-      let result = await addVehicle(chassi, modeloCarro, nomeCarro, precoCarro, corCarro, imagem);
+      let result = await addVehicle(chassi.trim(), modeloCarro.trim(), nomeCarro.trim(), precoCarro, corCarro.trim(), imagem);
       if (result) {
         sucessRequisition("Cadastro bem sucedido");
       } else {

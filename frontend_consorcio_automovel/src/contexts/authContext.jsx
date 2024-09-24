@@ -28,7 +28,6 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(()=> {
-    console.log("Tamo tentando!");
     document.onload = loadUserAfterReload();
   },[]);
 

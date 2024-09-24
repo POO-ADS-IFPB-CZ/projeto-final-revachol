@@ -13,8 +13,6 @@ class AutomovelView:
         @self.api.get("/listar")
         def listar_automoveis(request):
             automoveis = AutomovelController.listar_automoveis()
-            if automoveis is None:
-                return JsonResponse({"status": 404, "message": "Nenhum automóvel cadastrado"}, status=404)
             return JsonResponse({"automoveis": automoveis})
             
         

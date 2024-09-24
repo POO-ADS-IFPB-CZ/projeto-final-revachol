@@ -26,7 +26,7 @@ export function RegistrationEmployee() {
   async function registerAutentication(e) {
     e.preventDefault();
     
-    const result = await sellerRegister(username, password, email, primeiroNome, ultimoNome);
+    const result = await sellerRegister(username.trim(), password.trim(), email.trim(), primeiroNome.trim(), ultimoNome.trim());
     if (result) {
       console.log('Cadastro realizado com sucesso:', result);
       cleanInputs();
@@ -52,8 +52,6 @@ export function RegistrationEmployee() {
   return (
     <Layout>
     <Header />
-    
-    {/* Verifica se o usuário está logado */}
     {user?.isStaff ? (
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
        
@@ -98,11 +96,9 @@ export function RegistrationEmployee() {
         </form>
       </Main>
     ) : (
-      // Exibe mensagem caso o usuário não esteja logado
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
         <div className="bg-red-200 text-red-700 p-4 rounded">
           <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
-          <p className="mt-2">Realize login</p>
         </div>
       </Main>
     )}

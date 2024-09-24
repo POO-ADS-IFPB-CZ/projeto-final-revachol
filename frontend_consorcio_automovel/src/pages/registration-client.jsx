@@ -26,7 +26,7 @@ export function RegistrationClient() {
   async function registerCustomer(e) {
     e.preventDefault();
     
-    const result = await  customerRegister(name, cpf, telefone, email, endereco);
+    const result = await customerRegister(name.trim(), cpf.trim(), telefone.trim(), email.trim(), endereco.trim());
     if (result) {
       console.log('Cadastro realizado com sucesso:', result);
       cleanInputs();
@@ -54,7 +54,6 @@ export function RegistrationClient() {
       <Header />
       {user ? (
       <Main className="flex justify-center items-center sm:items-start sm:pt-24">
-
         <form onSubmit={registerCustomer}  className="flex flex-col gap-2 w-full max-w-screen-sm">
           <h1 className="text-2xl font-semibold">Cadastro de cliente</h1>
           {errorVisible && <ErrorMessage message={errorMessage}/>}
@@ -92,11 +91,9 @@ export function RegistrationClient() {
         </form>
       </Main>
       ) : (
-        // Exibe mensagem caso o usuário não esteja logado
         <Main className="flex justify-center items-center sm:items-start sm:pt-24">
           <div className="bg-red-200 text-red-700 p-4 rounded">
             <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
-            <p className="mt-2">Realize login</p>
           </div>
         </Main>
       )}

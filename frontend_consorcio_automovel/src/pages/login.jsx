@@ -20,7 +20,7 @@ export function Login() {
 
   async function loginAutentication(e) {
     e.preventDefault();
-    const result = await authentication(username, password);
+    const result = await authentication(username.trim(), password.trim());
     setVisible(false);
     if (result) {
       login(result);

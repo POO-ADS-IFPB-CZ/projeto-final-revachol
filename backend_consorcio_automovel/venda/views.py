@@ -13,8 +13,6 @@ class VendaView:
         def listar_vendas(request):
             if request.user.is_authenticated:
                 vendas = VendaController.listar_vendas(request)
-                if vendas is None:
-                    return JsonResponse({"status": 404, "message": "Nenhuma venda encontrada"}, status=404)
                 return JsonResponse({"vendas": vendas})
             else:
                 return JsonResponse({"status": 401, "message": "Autenticação necessária"}, status=401)

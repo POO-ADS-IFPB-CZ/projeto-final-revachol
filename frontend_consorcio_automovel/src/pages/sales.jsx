@@ -23,7 +23,6 @@ export function Sales() {
   const [errorMessage, setErrorMessage] = useState('');
   const [sucessMessage, setSucessMessage] = useState('');
 
-  //função que salva a venda
   async function handleSaveSale() {
     setChassi("");
     setCpf("");
@@ -32,7 +31,7 @@ export function Sales() {
   }
 
   async function addSales(){
-    const result = await addSale(cpf, chassi);
+    const result = await addSale(cpf.trim(), chassi.trim());
     if(result){
       sucessRequisition("Venda adicionada!");
     } else {
@@ -41,7 +40,7 @@ export function Sales() {
   }
 
   async function refreshSales(){
-    const data = await loadSales(); // Chama a função que busca os veículos
+    const data = await loadSales(); 
       if (data) {
         setSales(data);
         setFilteredSales(data); 
@@ -64,12 +63,14 @@ export function Sales() {
   }
 
   function sucessRequisition(message){
+    refreshSales();
     setErrorVisible(false);
     setSucessVisible(true);
     setSucessMessage(message);
   }
 
   function errorRequisition(message){
+    refreshSales();
     setErrorVisible(true);
     setSucessVisible(false);
     setErrorMessage(message);
@@ -117,11 +118,9 @@ export function Sales() {
         </section>
       </Main>
       ) : (
-        // Exibe mensagem caso o usuário não esteja logado
         <Main className="flex justify-center items-center sm:items-start sm:pt-24">
           <div className="bg-red-200 text-red-700 p-4 rounded">
             <h2 className="text-2xl font-semibold">Acesso Restrito</h2>
-            <p className="mt-2">Realize login</p>
           </div>
         </Main>
       )}

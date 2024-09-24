@@ -27,14 +27,15 @@ function VehicleCard({ nome, cor, chassi, preco, modelo,imagem,  onChangeVehicle
     setIsOpen(false)
   }
   async function updateVehicleFunction() {
-    const result = await updateVehicles(chassi, modeloCarro, nomeCarro, precoCarro, corCarro)
-    if(result){
-      onChangeVehicle();
-      sucessRequisition("Veículo atualizado!");
-    } else {
-      errorRequisition("Falha na atualização!");
+    if(modeloCarro && nomeCarro && precoCarro && corCarro) {
+      const result = await updateVehicles(chassi, modeloCarro.trim(), nomeCarro.trim(), precoCarro.trim(), corCarro.trim())
+      if(result){
+        onChangeVehicle();
+        sucessRequisition("Veículo atualizado!");
+      } else {
+        errorRequisition("Falha na atualização!");
+      }
     }
-    
     
   }
 
