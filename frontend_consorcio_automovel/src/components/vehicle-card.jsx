@@ -45,7 +45,7 @@ function VehicleCard({ nome, cor, chassi, preco, modelo,imagem,  onChangeVehicle
       if(result){
         sucessRequisition("Veículo deletado!");
       } else {
-        errorRequisition("Falha na remoção do veículo! Verifique se o veículo não está sendo usado em alguma venda");
+        errorRequisition("Falha na remoção do veículo!");
       }
       onChangeVehicle();
   }
