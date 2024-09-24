@@ -8,9 +8,14 @@ class VendaController:
     def criar_venda(request, data):
         vendedor = User.objects.get(username=request.user.username)
         cliente = Cliente.objects.get(cpf=data.cpf_cliente)
-        automovel = Automovel.objects.get(chassi=data.chassi_automovel)
-        preco = automovel.preco
+        automovel_object = Automovel.objects.get(chassi=data.chassi_automovel)
+        automovel = automovel_object.chassi
+        verifica_chassi = Venda.objects.filter(chassi_automovel=automovel).exists()
         
+        if verifica_chassi:
+            return None
+        
+        preco = automovel_object.preco
         venda = Venda.objects.create(
                 username_vendedor=vendedor,
                 cpf_cliente=cliente,

@@ -16,7 +16,7 @@ class VendedorView:
             if not request.user.is_staff:
                 return JsonResponse({"status": 401, "message": "Autenticação necessária como administrador"}, status=401)
             vendedor = VendedorController.criar_vendedor(data)
-             
+                         
             if vendedor is None:
                 return JsonResponse({"status": 400, "message": "Vendedor já cadastrado"}, status=400)
             

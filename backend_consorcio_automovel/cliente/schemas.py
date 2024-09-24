@@ -6,3 +6,9 @@ class ClienteSchema(Schema):
     telefone: str
     email: str
     endereco: str
+    
+class ClienteUpdateSchema(Schema):
+    nome: str
+    telefone: str
+    email: str
+    endereco: str
