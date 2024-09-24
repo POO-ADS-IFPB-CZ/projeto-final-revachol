@@ -82,7 +82,7 @@ export function Customers() {
               onChangeCustomer={refreshCustomer}
               />
             
-          )) : <p>Nenhuma venda encontrada.</p>}
+          )) : <p>Nenhum cliente encontrado.</p>}
           </div>
 
         </section>

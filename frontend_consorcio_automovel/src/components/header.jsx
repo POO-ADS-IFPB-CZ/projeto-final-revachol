@@ -18,7 +18,7 @@ export function Header({onSearchChange}) {
       <header className="bg-slate-300">
         <div className="flex flex-col p-4 gap-4 border-b border-primary sm:flex-row sm:justify-between">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl text-primary font-medium">Chevrolates</h1>
+            <h1 className="text-2xl text-primary font-medium">Rota Veículos</h1>
             <Toggle />
           </div>
           {inputIsVisible && <InputHeader onChange={handleInputChange} placeholder={location.pathname}/>}

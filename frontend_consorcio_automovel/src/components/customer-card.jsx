@@ -30,6 +30,7 @@ export function CustomerCard({cpf, nome, email, telefone, endereco, onChangeCust
       errorRequisition("Falha na remoção do cliente!");
     }
     onChangeCustomer();
+    close();
   }
 
   async function updateCustomerFunction() {

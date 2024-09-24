@@ -11,6 +11,7 @@ import { loadSales } from "../utils/sales/getSales";
 import { addSale } from "../utils/sales/addSale";
 import { ErrorMessage } from "../components/errorMessage";
 import { SucessMessage } from "../components/sucessMessage";
+import { formatarDataVenda } from "../utils/logic/formatdata";
 
 export function Sales() {
   const {user} = useAuth(); 
@@ -106,7 +107,7 @@ export function Sales() {
               vendedor_id={venda.username_vendedor_id}
               chassi={venda.chassi_automovel}
               codigo_venda={venda.codigo_venda}
-              data_venda={venda.data_venda}
+              data_venda={formatarDataVenda(venda.data_venda)}
               preco={venda.preco}
               sucessRequisition={sucessRequisition}
               errorRequisition={errorRequisition}

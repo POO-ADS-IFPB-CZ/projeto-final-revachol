@@ -99,7 +99,6 @@ function VehicleCard({ nome, cor, chassi, preco, modelo,imagem,  onChangeVehicle
                   />
                 </div>
                 :   <div className='flex flex-col gap-2'>
-                  <TextLocked >Chassi: {chassi}</TextLocked>
                   <TextLocked >Modelo: {modeloCarro}</TextLocked>
                   <TextLocked >Nome: {nomeCarro}</TextLocked>
                   <TextLocked >Preco: {precoCarro}</TextLocked>

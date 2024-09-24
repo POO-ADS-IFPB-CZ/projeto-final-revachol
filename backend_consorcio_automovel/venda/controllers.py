@@ -2,6 +2,7 @@ from venda.models import Venda
 from django.contrib.auth.models import User
 from cliente.models import Cliente
 from automovel.models import Automovel
+from automovel.controllers import AutomovelController
 
 class VendaController:
     @staticmethod
@@ -10,11 +11,6 @@ class VendaController:
         cliente = Cliente.objects.get(cpf=data.cpf_cliente)
         automovel_object = Automovel.objects.get(chassi=data.chassi_automovel)
         automovel = automovel_object.chassi
-        verifica_chassi = Venda.objects.filter(chassi_automovel=automovel).exists()
-        
-        if verifica_chassi:
-            return None
-        
         preco = automovel_object.preco
         venda = Venda.objects.create(
                 username_vendedor=vendedor,
@@ -22,6 +18,7 @@ class VendaController:
                 chassi_automovel=automovel,
                 preco=preco
         )
+        AutomovelController.deletar_automovel(automovel)
         return venda
     
     @staticmethod

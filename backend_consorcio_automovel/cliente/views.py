@@ -16,11 +16,11 @@ class ClienteView:
                 cliente = ClienteController.criar_cliente(data)
                 
                 if cliente is None:
-                    return {"status": 400, "message": "Cliente já cadastrado"}
+                    return JsonResponse({"status": 400, "message": "Cliente já cadastrado"}, status=400)
             
-                return {"success": "Cliente cadastrado com sucesso"}
+                return JsonResponse({"success": "Cliente cadastrado com sucesso"})
             else:
-                return {"status": 401, "message": "Autenticação necessária"}
+                return JsonResponse({"status": 401, "message": "Autenticação necessária"})
             
         @self.api.get("/listar")
         def listar_cliente(request):
@@ -28,7 +28,7 @@ class ClienteView:
                 clientes = ClienteController.listar_cliente()
                 return JsonResponse({"clientes": clientes})
             else:
-                return {"status": 401, "message": "Autenticação necessária"}    
+                return JsonResponse({"status": 401, "message": "Autenticação necessária"})  
         
         @self.api.put("/atualizar/{cpf}")
         def atualizar_cliente(request, data: ClienteUpdateSchema, cpf: str):
@@ -38,7 +38,7 @@ class ClienteView:
                     return JsonResponse({"sucess": "Cliente atualizado com sucesso"})
                 return JsonResponse({"status": 404, "message": "Cliente não encontrado"}, status=404)
             else:
-                return {"status": 401, "message": "Autenticação necessária"}  
+                return JsonResponse({"status": 401, "message": "Autenticação necessária"})
             
         @self.api.delete("/deletar/{cpf}")
         def deletar_cliente(request, cpf: str):
