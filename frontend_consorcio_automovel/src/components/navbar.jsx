@@ -2,7 +2,7 @@ import { Anchor } from "./anchor";
 import { ToggleContext } from "../contexts/toggle";
 import { useContext } from "react";
 import { useAuth } from "../contexts/authContext";
-import { CarFront, House, LogIn, LogOut, ShoppingCart, UserPlus } from "lucide-react";
+import { CarFront, House, LogIn, LogOut, ShoppingCart, UserPlus, User } from "lucide-react";
 
 export function Navbar() {
   const {user} = useAuth(); 
@@ -15,6 +15,7 @@ export function Navbar() {
       { link: '/veiculos', label: 'Veículos', icon: <CarFront size={16} strokeWidth={1.8}/> },
       { link: '/vendas', label: 'Vendas', icon: <ShoppingCart size={16} strokeWidth={1.8}/> },
       { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon: <UserPlus size={16} strokeWidth={1.8}/> },
+      { link: '/clientes', label: 'Clientes', icon: <User size={16} strokeWidth={1.8}/> },
       { link: '/cadastro-funcionario', label: 'Cadastro Funcionário', icon: <UserPlus size={16} strokeWidth={1.8}/> },
       { link: '/logout', label: 'Sair', icon: <LogOut size={16} strokeWidth={1.8}/> },
     ];
@@ -23,6 +24,7 @@ export function Navbar() {
       { link: '/', label: 'Inicio', icon: <House size={16} strokeWidth={1.8}/> },
       { link: '/veiculos', label: 'Veículos', icon: <CarFront size={16} strokeWidth={1.8}/> },
       { link: '/vendas', label: 'Vendas', icon: <ShoppingCart size={16} strokeWidth={1.8}/> },
+      { link: '/clientes', label: 'Clientes', icon: <User size={16} strokeWidth={1.8}/> },
       { link: '/cadastro-cliente', label: 'Cadastro Cliente', icon: <UserPlus size={16} strokeWidth={1.8}/> },
       { link: '/logout', label: 'Sair', icon: <LogOut size={16} strokeWidth={1.8}/> },
     ];

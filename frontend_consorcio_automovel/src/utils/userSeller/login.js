@@ -17,10 +17,10 @@ export async function authentication(username, password) {
       return data;
     } else {
       console.error('Falha no login. Status:', response.status);
-      return null;
+      return false;
     }
   } catch (error) {
     console.error('Erro ao tentar fazer login:', error);
-    return null;
+    return false;
   }
 }

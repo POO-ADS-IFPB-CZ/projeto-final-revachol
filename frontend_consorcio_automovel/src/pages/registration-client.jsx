@@ -71,6 +71,7 @@ export function RegistrationClient() {
           <Input
             type="text"
             placeholder="CPF" 
+            maxLength={14}
             value={cpf}
             onChange={e => setCpf(e.target.value)}
             />

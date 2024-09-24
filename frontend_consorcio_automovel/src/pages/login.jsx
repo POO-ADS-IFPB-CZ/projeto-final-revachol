@@ -21,12 +21,11 @@ export function Login() {
   async function loginAutentication(e) {
     e.preventDefault();
     const result = await authentication(username.trim(), password.trim());
-    setVisible(false);
     if (result) {
       login(result);
       console.log('Login realizado com sucesso:', result);
       navigate('/');
-    } else {
+    } else { 
       console.log('Falha no login', result);
       setPassword("");
       setUsername("");
@@ -41,18 +40,19 @@ export function Login() {
       <Header />
       
       <Main className="flex justify-center items-center">
-      
         <form onSubmit={loginAutentication}  className="flex flex-col gap-2 w-full max-w-screen-sm"> 
         {visible && <ErrorMessage message={errorMessage}/>}
           <h1 className="text-2xl font-semibold">Login</h1>
           <Input
             type="text"
             placeholder="username" 
+            value={username}
             onChange={e => setUsername(e.target.value)} 
             />
           <Input
             type="password"
             placeholder="senha" 
+            value={password}
             onChange={e => setPassword(e.target.value)} 
             />
           <div>

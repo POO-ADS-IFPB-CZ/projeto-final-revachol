@@ -8,6 +8,7 @@ import { Home } from "./pages/home";
 import { Sales } from "./pages/sales";
 import { NotFound } from "./pages/not-found";
 import { AuthProvider } from "./contexts/authContext";
+import { Customers } from "./pages/customer";
 
 export function Router() {
   return (
@@ -19,6 +20,7 @@ export function Router() {
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/cadastro-cliente" element={<RegistrationClient/>} />
         <Route path="/cadastro-funcionario" element={<RegistrationEmployee/>} />
+        <Route path="/clientes" element={<Customers/>} />
         <Route path="/veiculos" element={<Vehicles/>} />
         <Route path="/vendas" element={<Sales />} />
         <Route path="*" element={<NotFound/>} />

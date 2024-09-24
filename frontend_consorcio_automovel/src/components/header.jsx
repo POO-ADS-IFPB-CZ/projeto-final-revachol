@@ -12,7 +12,7 @@ export function Header({onSearchChange}) {
     onSearchChange(value); 
   };
 
-  const inputIsVisible = location.pathname == "/veiculos" || location.pathname == "/vendas" ? true: false
+  const inputIsVisible = location.pathname == "/veiculos" || location.pathname == "/clientes" || location.pathname == "/vendas" ? true: false
   return (
     <ToggleProvider>
       <header className="bg-slate-300">

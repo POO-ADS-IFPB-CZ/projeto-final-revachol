@@ -35,14 +35,13 @@ export function Sales() {
     if(result){
       sucessRequisition("Venda adicionada!");
     } else {
-      errorRequisition("Verifique se os valores estão corretos!");
+      errorRequisition("Verifique se os valores estão corretos, ou se o veículo já foi vendido!");
     }
   }
 
   async function refreshSales(){
     const data = await loadSales(); 
       if (data) {
-        console.log(data);
         setSales(data);
         setFilteredSales(data); 
       }
@@ -88,6 +87,7 @@ export function Sales() {
             <Modal title="Realizar venda" saveOnClick={handleSaveSale}>
               <Input type="text" placeholder="CPF do cliente" 
               value={cpf}
+              maxLength={14}
               onChange={e => setCpf(e.target.value)}
               />
               <Input type="text" placeholder="Chassi" 

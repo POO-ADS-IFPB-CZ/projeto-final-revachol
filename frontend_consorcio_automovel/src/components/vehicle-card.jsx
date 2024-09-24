@@ -35,6 +35,7 @@ function VehicleCard({ nome, cor, chassi, preco, modelo,imagem,  onChangeVehicle
       } else {
         errorRequisition("Falha na atualização!");
       }
+      setIsOpen(false);
     }
     
   }
