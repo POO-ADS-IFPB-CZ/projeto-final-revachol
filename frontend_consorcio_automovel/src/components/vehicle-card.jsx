@@ -54,7 +54,7 @@ function VehicleCard({ nome, cor, chassi, preco, modelo,imagem,  onChangeVehicle
     <>
       <div onClick={open} className="w-full relative cursor-pointer vehicle-card">
         <img
-          className="w-full"
+          className="w-full aspect-video object-cover"
           src={"http://localhost:8000/media/"+imagem}
           alt=""
           srcSet="" />
